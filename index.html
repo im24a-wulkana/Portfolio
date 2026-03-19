@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - IMS Schüler Informatik</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===== CSS Reset & Base Styles ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            color: #ffffff;
+            background: linear-gradient(135deg, #090A0B 0%, #1A2233 50%, #090A0B 100%);
+            background-attachment: fixed;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* ===== Typography ===== */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+        
+        /* ===== Navigation ===== */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(26, 34, 51, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 3rem;
+        }
+        
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: #4A90E2;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4A90E2;
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* ===== Container ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        section {
+            padding: 5rem 0;
+            min-height: 50vh;
+        }
+        
+        /* ===== Hero Section ===== */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 0;
+        }
+        
+        .hero-content h1 {
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #4A90E2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-content p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* ===== Section Headers ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            color: #ffffff;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #4A90E2;
+            border-radius: 2px;
+        }
+        
+        /* ===== About Section ===== */
+        .about {
+            background: rgba(26, 34, 51, 0.3);
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .about-content p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* ===== Skills Section ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .skill-card {
+            background: rgba(45, 47, 51, 0.6);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.2);
+            border-color: rgba(74, 144, 226, 0.3);
+        }
+        
+        .skill-card h3 {
+            color: #4A90E2;
+            margin-bottom: 1rem;
+        }
+        
+        .skill-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+        
+        /* ===== Projects Section ===== */
+        .projects {
+            background: rgba(26, 34, 51, 0.3);
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .project-card {
+            background: rgba(45, 47, 51, 0.6);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.2);
+            border-color: rgba(74, 144, 226, 0.3);
+        }
+        
+        .project-card h3 {
+            color: #4A90E2;
+            margin-bottom: 1rem;
+        }
+        
+        .project-card p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-link {
+            display: inline-block;
+            color: #4A90E2;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .project-link:hover {
+            color: #6BA3E8;
+        }
+        
+        .project-link::after {
+            content: ' →';
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+        
+        .project-link:hover::after {
+            transform: translateX(5px);
+        }
+        
+        /* ===== Kontakt Section ===== */
+        .contact {
+            background: rgba(26, 34, 51, 0.3);
+        }
+        
+        .contact-content {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4A90E2;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.75rem 1.25rem;
+            background: rgba(45, 47, 51, 0.6);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .contact-links a:hover {
+            background: rgba(45, 47, 51, 0.9);
+            border-color: rgba(74, 144, 226, 0.3);
+        }
+        
+        /* ===== Footer ===== */
+        footer {
+            background: rgba(9, 10, 11, 0.8);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        footer p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        /* ===== Responsive Design ===== */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav a {
+                font-size: 0.9rem;
+            }
+            
+            .hero {
+                padding: 4rem 0;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            nav a {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#ueber-mich">Über mich</a></li>
+                <li><a href="#faehigkeiten">Fähigkeiten</a></li>
+                <li><a href="#projekte">Projekte</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Portfolio</h1>
+                <p>IMS-Schüler mit Schwerpunkt Informatik</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Über mich Section -->
+    <section id="ueber-mich" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Über mich</h2>
+            </div>
+            <div class="about-content">
+                <p>
+                    Ich bin IMS-Schüler an der Kantonsschule Hottingen (KSH) im zweiten Jahr mit Schwerpunkt Informatik. Während meiner Ausbildung beschäftige ich mich mit Programmierung und grundlegenden IT-Themen. Besonders interessiert mich das Arbeiten mit Software und Webtechnologien, da mir logisches Denken und strukturiertes Arbeiten liegen.
+                </p>
+                <p>
+                    Ich arbeite zuverlässig und konzentriert, bin lernbereit und motiviert, meine fachlichen Kenntnisse kontinuierlich zu erweitern. Neue Aufgaben gehe ich sorgfältig an und lege Wert auf saubere und verständliche Lösungen.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Fähigkeiten Section -->
+    <section id="faehigkeiten">
+        <div class="container">
+            <div class="section-header">
+                <h2>Fähigkeiten</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Python</h3>
+                    <p>Grundlegende Programmierkenntnisse, einfache Programme</p>
+                </div>
+                <div class="skill-card">
+                    <h3>MySQL</h3>
+                    <p>Datenbanken, einfache Abfragen</p>
+                </div>
+                <div class="skill-card">
+                    <h3>HTML & CSS</h3>
+                    <p>Struktur und Gestaltung einfacher Webseiten</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projekte Section -->
+    <section id="projekte" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>Projekte</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Gaming Incentives</h3>
+                    <p>Ein GitHub-Projekt zur Verwaltung von Gaming-Incentives und Belohnungssystemen.</p>
+                    <a href="https://github.com/im24a-mendolag/Prwr-good" target="_blank" rel="noopener noreferrer" class="project-link">Auf GitHub ansehen</a>
+                </div>
+                <div class="project-card">
+                    <h3>Portfolio-Webseite</h3>
+                    <p>Diese moderne Portfolio-Webseite, erstellt mit HTML und CSS, zeigt meine Fähigkeiten im Webdesign.</p>
+                    <a href="#" class="project-link">Projekt ansehen</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Kontakt Section -->
+    <section id="kontakt" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Kontakt</h2>
+            </div>
+            <div class="contact-content">
+                <p>Du möchtest mit mir in Kontakt treten? Schreib mir gerne eine E-Mail oder besuche mein GitHub-Profil.</p>
+                <div class="contact-links">
+                    <a href="mailto:aaron.wulkan@icloud.com">aaron.wulkan@icloud.com</a>
+                    <a href="https://github.com/im24a-wulkana" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Portfolio - IMS Schüler Informatik</p>
+        </div>
+    </footer>
+</body>
+</html>

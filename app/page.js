@@ -1,67 +1,99 @@
-"use client";
+  "use client";
 
 import { useState } from "react";
 
 const content = {
   de: {
-    nav: { about: "Über mich", skills: "Fähigkeiten", projects: "Projekte", contact: "Kontakt" },
+    nav: { profile: "Profil", work: "Arbeitsweise", projects: "Projekte", contact: "Kontakt" },
     hero: {
-      title: "Hallo, ich bin Aaron.",
-      subtitle: "IMS-Schüler mit Schwerpunkt Informatik",
+      title: "Aaron Wulkan",
+      subtitle: "IMS-Schüler an der KSH (2. Jahr), Schwerpunkt Informatik.",
+      note: "Ich dokumentiere hier echte Schul- und Nebenprojekte. Kein Werbetext, nur was ich wirklich gebaut habe.",
+      cta: "Projekte ansehen",
     },
-    about: {
-      title: "Über mich",
-      p1: "Ich bin IMS-Schüler an der Kantonsschule Hottingen (KSH) im zweiten Jahr mit Schwerpunkt Informatik. Während meiner Ausbildung beschäftige ich mich mit Programmierung und grundlegenden IT-Themen. Besonders interessiert mich das Arbeiten mit Software und Webtechnologien, da mir logisches Denken und strukturiertes Arbeiten liegen.",
-      p2: "Ich arbeite zuverlässig und konzentriert, bin lernbereit und motiviert, meine fachlichen Kenntnisse kontinuierlich zu erweitern. Neue Aufgaben gehe ich sorgfältig an und lege Wert auf saubere und verständliche Lösungen.",
+    profile: {
+      title: "Kurz zu mir",
+      p1: "Ich bin im zweiten IMS-Jahr an der Kantonsschule Hottingen. Meine Schulprojekte liegen aktuell bei Python, SQL und Web-Grundlagen.",
+      p2: "Bei Aufgaben arbeite ich lieber ruhig und sauber statt schnell und unklar. Lesbarer Code ist für mich wichtiger als \"schlaue\" Tricks.",
     },
-    skills: {
-      title: "Fähigkeiten",
-      python: "Grundlegende Programmierkenntnisse, einfache Programme",
-      mysql: "Datenbanken, einfache Abfragen",
-      htmlCss: "Struktur und Gestaltung einfacher Webseiten",
+    work: {
+      title: "So arbeite ich gerade",
+      items: [
+        { title: "Frontend", text: "Next.js, React, HTML und CSS. Fokus auf klare Komponenten statt unnötiger Animationen." },
+        { title: "Backend / Daten", text: "Python und MySQL für einfache APIs, Abfragen und kleine Datenmodelle." },
+        { title: "Workflow", text: "GitHub, kleine Commits und kurze Notizen im Code, damit Änderungen nachvollziehbar bleiben." },
+      ],
     },
     projects: {
       title: "Projekte",
-      gaming: "Ein GitHub-Projekt zur Verwaltung von Gaming-Incentives und Belohnungssystemen.",
-      gamingLink: "Auf GitHub ansehen",
-      portfolio: "Diese moderne Portfolio-Webseite, erstellt mit HTML und CSS, zeigt meine Fähigkeiten im Webdesign.",
-      portfolioLink: "Projekt ansehen",
+      intro: "Zwei Projekte, die meinen aktuellen Stand gut zeigen:",
+      featured: {
+        name: "Gaming Incentives",
+        summary:
+          "Teamprojekt zur Verwaltung von Regeln, Punkten und Belohnungen. Mein Anteil lag bei Datenstruktur und UI-Umsetzung.",
+        role: "Rolle: Datenmodell + Frontend-Struktur",
+        link: "https://github.com/im24a-mendolag/Prwr-good",
+        linkLabel: "Zum Repository",
+      },
+      side: {
+        name: "Portfolio Website",
+        summary: "Diese Seite ist mein laufendes Übungsprojekt. Ich verbessere sie laufend beim Lernen.",
+      },
     },
     contact: {
       title: "Kontakt",
-      text: "Du möchtest mit mir in Kontakt treten? Schreib mir gerne eine E-Mail oder besuche mein GitHub-Profil.",
+      text: "Wenn du ein Schulprojekt oder eine kleine Idee besprechen willst: kurze Mail reicht.",
+      copyAction: "Kopieren",
+      copied: "Kopiert!",
+      copyFailed: "Kopieren fehlgeschlagen",
     },
-    footer: "Aaron – IMS Schüler Informatik",
+    footer: "Aaron Wulkan",
   },
   en: {
-    nav: { about: "About me", skills: "Skills", projects: "Projects", contact: "Contact" },
+    nav: { profile: "Profile", work: "Workflow", projects: "Projects", contact: "Contact" },
     hero: {
-      title: "Hi, I'm Aaron.",
-      subtitle: "IMS student with focus on computer science",
+      title: "Aaron Wulkan",
+      subtitle: "IMS student at KSH (year 2), computer science track.",
+      note: "This site documents real school and side projects. No marketing copy, just actual work.",
+      cta: "See projects",
     },
-    about: {
+    profile: {
       title: "About me",
-      p1: "I am an IMS student at Kantonsschule Hottingen (KSH) in my second year with a focus on computer science. During my training I work on programming and fundamental IT topics. I am especially interested in software and web technologies, as I enjoy logical thinking and structured work.",
-      p2: "I work reliably and with focus, I am eager to learn and motivated to continuously expand my skills. I approach new tasks carefully and value clean, understandable solutions.",
+      p1: "I am currently in year 2 of IMS at Kantonsschule Hottingen. Most school projects I do are in Python, SQL and core web tech.",
+      p2: "I prefer clean and readable code over clever but hard-to-maintain solutions.",
     },
-    skills: {
-      title: "Skills",
-      python: "Basic programming skills, simple programs",
-      mysql: "Databases, simple queries",
-      htmlCss: "Structure and styling of simple websites",
+    work: {
+      title: "How I work right now",
+      items: [
+        { title: "Frontend", text: "Next.js, React, HTML and CSS. I keep components direct and easy to read." },
+        { title: "Backend / Data", text: "Python and MySQL for basic APIs, queries and small data models." },
+        { title: "Workflow", text: "GitHub, small commits and short code notes for better traceability." },
+      ],
     },
     projects: {
       title: "Projects",
-      gaming: "A GitHub project for managing gaming incentives and reward systems.",
-      gamingLink: "View on GitHub",
-      portfolio: "This modern portfolio website, built with HTML and CSS, showcases my web design skills.",
-      portfolioLink: "View project",
+      intro: "Two projects that represent my current level best:",
+      featured: {
+        name: "Gaming Incentives",
+        summary:
+          "Team project for reward rules, points and small reports. My part focused on data structure and UI implementation.",
+        role: "Role: data model + frontend structure",
+        link: "https://github.com/im24a-mendolag/Prwr-good",
+        linkLabel: "Open repository",
+      },
+      side: {
+        name: "Portfolio Website",
+        summary: "This website is my ongoing practice project. I keep improving it while learning.",
+      },
     },
     contact: {
       title: "Contact",
-      text: "Want to get in touch? Feel free to send me an email or visit my GitHub profile.",
+      text: "If you want to discuss a school project or small idea, feel free to send a quick email.",
+      copyAction: "Copy",
+      copied: "Copied!",
+      copyFailed: "Copy failed",
     },
-    footer: "Aaron – IMS student computer science",
+    footer: "Aaron Wulkan",
   },
 };
 
@@ -76,10 +108,10 @@ export default function Home() {
   async function handleCopyEmail() {
     try {
       await navigator.clipboard.writeText(emailAddress);
-      setCopyFeedback(lang === "de" ? "Kopiert!" : "Copied!");
+      setCopyFeedback(t.contact.copied);
       setIsCopyMenuOpen(false);
     } catch {
-      setCopyFeedback(lang === "de" ? "Kopieren fehlgeschlagen" : "Copy failed");
+      setCopyFeedback(t.contact.copyFailed);
     }
 
     setTimeout(() => setCopyFeedback(""), 1800);
@@ -87,130 +119,135 @@ export default function Home() {
 
   return (
     <>
-      <nav>
-        <div className="container nav-inner">
-          <ul>
-            <li><a href="#ueber-mich">{t.nav.about}</a></li>
-            <li><a href="#faehigkeiten">{t.nav.skills}</a></li>
-            <li><a href="#projekte">{t.nav.projects}</a></li>
-            <li><a href="#kontakt">{t.nav.contact}</a></li>
-          </ul>
-          <div className="lang-switch">
-            <button
-              type="button"
-              className={lang === "de" ? "active" : ""}
-              onClick={() => setLang("de")}
-              aria-label="Deutsch"
-            >
-              DE
-            </button>
-            <button
-              type="button"
-              className={lang === "en" ? "active" : ""}
-              onClick={() => setLang("en")}
-              aria-label="English"
-            >
-              EN
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      <section className="hero">
-        <div className="container">
-          <div className="hero-content">
-            <h1>{t.hero.title}</h1>
-            <p>{t.hero.subtitle}</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="ueber-mich" className="about">
-        <div className="container">
-          <div className="section-header">
-            <h2>{t.about.title}</h2>
-          </div>
-          <div className="about-content">
-            <p>{t.about.p1}</p>
-            <p>{t.about.p2}</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="faehigkeiten">
-        <div className="container">
-          <div className="section-header">
-            <h2>{t.skills.title}</h2>
-          </div>
-          <div className="skills-grid">
-            <div className="skill-card">
-              <h3>Python</h3>
-              <p>{t.skills.python}</p>
-            </div>
-            <div className="skill-card">
-              <h3>MySQL</h3>
-              <p>{t.skills.mysql}</p>
-            </div>
-            <div className="skill-card">
-              <h3>HTML &amp; CSS</h3>
-              <p>{t.skills.htmlCss}</p>
+      {/* Semantic top navigation for clearer hierarchy */}
+      <header className="site-header">
+        <nav aria-label="Primary">
+          <div className="container nav-inner">
+            <ul>
+              <li><a href="#profil">{t.nav.profile}</a></li>
+              <li><a href="#arbeitsweise">{t.nav.work}</a></li>
+              <li><a href="#projekte">{t.nav.projects}</a></li>
+              <li><a href="#kontakt">{t.nav.contact}</a></li>
+            </ul>
+            <div className="lang-switch">
+              <button
+                type="button"
+                className={lang === "de" ? "active" : ""}
+                onClick={() => setLang("de")}
+                aria-label="Deutsch"
+              >
+                DE
+              </button>
+              <button
+                type="button"
+                className={lang === "en" ? "active" : ""}
+                onClick={() => setLang("en")}
+                aria-label="English"
+              >
+                EN
+              </button>
             </div>
           </div>
-        </div>
-      </section>
+        </nav>
+      </header>
 
-      <section id="projekte" className="projects">
-        <div className="container">
-          <div className="section-header">
-            <h2>{t.projects.title}</h2>
-          </div>
-          <div className="projects-grid">
-            <div className="project-card">
-              <h3>Gaming Incentives</h3>
-              <p>{t.projects.gaming}</p>
-              <a href="https://github.com/im24a-mendolag/Prwr-good" target="_blank" rel="noopener noreferrer" className="project-link">{t.projects.gamingLink}</a>
-            </div>
-            <div className="project-card">
-              <h3>Portfolio-Webseite</h3>
-              <p>{t.projects.portfolio}</p>
-              <a href="#" className="project-link">{t.projects.portfolioLink}</a>
+      <main>
+        <section className="hero" aria-labelledby="hero-title">
+          <div className="container section-grid">
+            <div className="hero-content">
+              <h1 id="hero-title">{t.hero.title}</h1>
+              <p className="hero-subtitle">{t.hero.subtitle}</p>
+              <p className="hero-note">{t.hero.note}</p>
+              <a href="#projekte" className="hero-link">{t.hero.cta}</a>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="kontakt" className="contact">
-        <div className="container">
-          <div className="section-header">
-            <h2>{t.contact.title}</h2>
+        <section id="profil" aria-labelledby="profile-title">
+          <div className="container section-grid">
+            <div className="section-header">
+              <h2 id="profile-title">{t.profile.title}</h2>
+            </div>
+            <article className="surface text-block">
+              <p>{t.profile.p1}</p>
+              <p>{t.profile.p2}</p>
+            </article>
           </div>
-          <div className="contact-content">
-            <p>{t.contact.text}</p>
-            <div className="contact-links">
-              <div className="email-copy-wrapper">
-                {isCopyMenuOpen && (
-                  <button type="button" className="copy-popover" onClick={handleCopyEmail}>
-                    Kopieren
+        </section>
+
+        <section id="arbeitsweise" aria-labelledby="work-title">
+          <div className="container section-grid">
+            <div className="section-header">
+              <h2 id="work-title">{t.work.title}</h2>
+            </div>
+            <div className="work-list">
+              {t.work.items.map((item) => (
+                <article className="surface work-item" key={item.title}>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="projekte" aria-labelledby="projects-title">
+          <div className="container section-grid">
+            <div className="section-header">
+              <h2 id="projects-title">{t.projects.title}</h2>
+              <p className="section-intro">{t.projects.intro}</p>
+            </div>
+
+            <div className="work-list">
+              <article className="surface">
+                <h3>{t.projects.featured.name}</h3>
+                <p>{t.projects.featured.summary}</p>
+                <p className="project-role">{t.projects.featured.role}</p>
+                <a href={t.projects.featured.link} target="_blank" rel="noopener noreferrer" className="project-link">
+                  {t.projects.featured.linkLabel}
+                </a>
+              </article>
+              <article className="surface">
+                <h3>{t.projects.side.name}</h3>
+                <p>{t.projects.side.summary}</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="kontakt" aria-labelledby="contact-title">
+          <div className="container section-grid">
+            <div className="section-header">
+              <h2 id="contact-title">{t.contact.title}</h2>
+            </div>
+            <div className="surface contact-content">
+              <p>{t.contact.text}</p>
+              <div className="contact-links">
+                <div className="email-copy-wrapper">
+                  {isCopyMenuOpen && (
+                    <button type="button" className="copy-popover" onClick={handleCopyEmail}>
+                      {t.contact.copyAction}
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    className="contact-link-button"
+                    onClick={() => {
+                      setIsCopyMenuOpen((prev) => !prev);
+                      setCopyFeedback("");
+                    }}
+                    aria-expanded={isCopyMenuOpen}
+                  >
+                    {emailAddress}
                   </button>
-                )}
-                <button
-                  type="button"
-                  className="contact-link-button"
-                  onClick={() => {
-                    setIsCopyMenuOpen((prev) => !prev);
-                    setCopyFeedback("");
-                  }}
-                  aria-expanded={isCopyMenuOpen}
-                >
-                  {emailAddress}
-                </button>
-                {copyFeedback && <span className="copy-feedback">{copyFeedback}</span>}
+                  {copyFeedback && <span className="copy-feedback">{copyFeedback}</span>}
+                </div>
+                <a href="https://github.com/im24a-wulkana" target="_blank" rel="noopener noreferrer">GitHub</a>
               </div>
-              <a href="https://github.com/im24a-wulkana" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
       <footer>
         <div className="container">
