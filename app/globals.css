@@ -65,7 +65,7 @@ nav {
 .nav-inner {
   min-height: 68px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   gap: 1rem;
 }
@@ -86,27 +86,6 @@ nav a {
 
 nav a:hover {
   color: #b1ceff;
-}
-
-.lang-switch {
-  display: inline-flex;
-  border: 1px solid rgba(190, 207, 236, 0.26);
-  border-radius: 8px;
-  overflow: hidden;
-  background: rgba(26, 34, 51, 0.44);
-}
-
-.lang-switch button {
-  border: 0;
-  background: transparent;
-  color: #d7e3f8;
-  padding: 0.35rem 0.65rem;
-  font-size: 0.82rem;
-  cursor: pointer;
-}
-
-.lang-switch button.active {
-  background: rgba(177, 206, 255, 0.2);
 }
 
 section {
@@ -205,6 +184,55 @@ section {
 .project-link:hover {
   color: #ffffff;
   border-bottom-color: rgba(255, 255, 255, 0.8);
+}
+
+.project-actions {
+  margin-top: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.project-actions .project-link {
+  margin-top: 0;
+}
+
+.project-page {
+  padding-top: 5rem;
+}
+
+.project-back-link {
+  display: inline-flex;
+  width: fit-content;
+  text-decoration: none;
+  color: #d3e4ff;
+  border-bottom: 1px solid rgba(211, 228, 255, 0.4);
+}
+
+.project-back-link:hover {
+  color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.9);
+}
+
+.tech-grid {
+  margin-top: 0.85rem;
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.tech-box {
+  border: 1px solid rgba(177, 199, 235, 0.3);
+  border-radius: 10px;
+  background: rgba(26, 34, 51, 0.65);
+  padding: 0.7rem 0.8rem;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.tech-label {
+  font-size: 0.78rem;
+  color: #a8bddf;
 }
 
 .contact-content {

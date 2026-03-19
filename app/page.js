@@ -1,107 +1,64 @@
   "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 const content = {
-  de: {
-    nav: { profile: "Profil", work: "Arbeitsweise", projects: "Projekte", contact: "Kontakt" },
-    hero: {
-      title: "Aaron Wulkan",
-      subtitle: "IMS-Schüler an der KSH (2. Jahr), Schwerpunkt Informatik.",
-      note: "Ich dokumentiere hier echte Schul- und Nebenprojekte. Kein Werbetext, nur was ich wirklich gebaut habe.",
-      cta: "Projekte ansehen",
-    },
-    profile: {
-      title: "Kurz zu mir",
-      p1: "Ich bin im zweiten IMS-Jahr an der Kantonsschule Hottingen. Meine Schulprojekte liegen aktuell bei Python, SQL und Web-Grundlagen.",
-      p2: "Bei Aufgaben arbeite ich lieber ruhig und sauber statt schnell und unklar. Lesbarer Code ist für mich wichtiger als \"schlaue\" Tricks.",
-    },
-    work: {
-      title: "So arbeite ich gerade",
-      items: [
-        { title: "Frontend", text: "Next.js, React, HTML und CSS. Fokus auf klare Komponenten statt unnötiger Animationen." },
-        { title: "Backend / Daten", text: "Python und MySQL für einfache APIs, Abfragen und kleine Datenmodelle." },
-        { title: "Workflow", text: "GitHub, kleine Commits und kurze Notizen im Code, damit Änderungen nachvollziehbar bleiben." },
-      ],
-    },
-    projects: {
-      title: "Projekte",
-      intro: "Zwei Projekte, die meinen aktuellen Stand gut zeigen:",
-      featured: {
-        name: "Gaming Incentives",
-        summary:
-          "Teamprojekt zur Verwaltung von Regeln, Punkten und Belohnungen. Mein Anteil lag bei Datenstruktur und UI-Umsetzung.",
-        role: "Rolle: Datenmodell + Frontend-Struktur",
-        link: "https://github.com/im24a-mendolag/Prwr-good",
-        linkLabel: "Zum Repository",
-      },
-      side: {
-        name: "Portfolio Website",
-        summary: "Diese Seite ist mein laufendes Übungsprojekt. Ich verbessere sie laufend beim Lernen.",
-      },
-    },
-    contact: {
-      title: "Kontakt",
-      text: "Wenn du ein Schulprojekt oder eine kleine Idee besprechen willst: kurze Mail reicht.",
-      copyAction: "Kopieren",
-      copied: "Kopiert!",
-      copyFailed: "Kopieren fehlgeschlagen",
-    },
-    footer: "Aaron Wulkan",
+  nav: { profile: "Profile", work: "Workflow", projects: "Projects", contact: "Contact" },
+  hero: {
+    title: "Aaron Wulkan",
+    subtitle: "IMS student at KSH (year 2), computer science track.",
+    note: "This site documents real school and side projects. No marketing copy, just actual work.",
+    cta: "See projects",
   },
-  en: {
-    nav: { profile: "Profile", work: "Workflow", projects: "Projects", contact: "Contact" },
-    hero: {
-      title: "Aaron Wulkan",
-      subtitle: "IMS student at KSH (year 2), computer science track.",
-      note: "This site documents real school and side projects. No marketing copy, just actual work.",
-      cta: "See projects",
-    },
-    profile: {
-      title: "About me",
-      p1: "I am currently in year 2 of IMS at Kantonsschule Hottingen. Most school projects I do are in Python, SQL and core web tech.",
-      p2: "I prefer clean and readable code over clever but hard-to-maintain solutions.",
-    },
-    work: {
-      title: "How I work right now",
-      items: [
-        { title: "Frontend", text: "Next.js, React, HTML and CSS. I keep components direct and easy to read." },
-        { title: "Backend / Data", text: "Python and MySQL for basic APIs, queries and small data models." },
-        { title: "Workflow", text: "GitHub, small commits and short code notes for better traceability." },
-      ],
-    },
-    projects: {
-      title: "Projects",
-      intro: "Two projects that represent my current level best:",
-      featured: {
-        name: "Gaming Incentives",
-        summary:
-          "Team project for reward rules, points and small reports. My part focused on data structure and UI implementation.",
-        role: "Role: data model + frontend structure",
-        link: "https://github.com/im24a-mendolag/Prwr-good",
-        linkLabel: "Open repository",
-      },
-      side: {
-        name: "Portfolio Website",
-        summary: "This website is my ongoing practice project. I keep improving it while learning.",
-      },
-    },
-    contact: {
-      title: "Contact",
-      text: "If you want to discuss a school project or small idea, feel free to send a quick email.",
-      copyAction: "Copy",
-      copied: "Copied!",
-      copyFailed: "Copy failed",
-    },
-    footer: "Aaron Wulkan",
+  profile: {
+    title: "About me",
+    p1: "I am currently in year 2 of IMS at Kantonsschule Hottingen. Most school projects I do are in Python, SQL and core web tech.",
+    p2: "I prefer clean and readable code over clever but hard-to-maintain solutions.",
   },
+  work: {
+    title: "How I work right now",
+    items: [
+      { title: "Frontend", text: "Next.js, React, HTML and CSS. I keep components direct and easy to read." },
+      { title: "Backend / Data", text: "Python and MySQL for basic APIs, queries and small data models." },
+      { title: "Workflow", text: "Small commits and short code notes for better traceability." },
+    ],
+  },
+  projects: {
+    title: "Projects",
+    intro: "Two projects that represent my current level best:",
+    featured: {
+      name: "Gaming Incentives",
+      summary:
+        "Team project for reward rules, points and small reports. My part focused on data structure and UI implementation.",
+      detailsHref: "/projekte/gaming-incentives",
+      detailsLabel: "Open project page",
+      projectHref: "https://github.com/im24a-mendolag/Prwr-good",
+      projectLabel: "Open project link",
+    },
+    side: {
+      name: "Portfolio Website",
+      summary: "This website is my ongoing practice project. I keep improving it while learning.",
+      detailsHref: "/projekte/portfolio-website",
+      detailsLabel: "Open project page",
+      projectHref: "/#hero-title",
+      projectLabel: "Open project link",
+    },
+  },
+  contact: {
+    title: "Contact",
+    text: "If you want to discuss a school project or small idea, feel free to send a quick email.",
+    copyAction: "Copy",
+    copied: "Copied!",
+    copyFailed: "Copy failed",
+  },
+  footer: "Aaron Wulkan",
 };
 
 export default function Home() {
-  const [lang, setLang] = useState("de");
   const [isCopyMenuOpen, setIsCopyMenuOpen] = useState(false);
   const [copyFeedback, setCopyFeedback] = useState("");
-  const t = content[lang];
+  const t = content;
   const currentYear = new Date().getFullYear();
   const emailAddress = "aaron.wulkan@icloud.com";
 
@@ -124,29 +81,11 @@ export default function Home() {
         <nav aria-label="Primary">
           <div className="container nav-inner">
             <ul>
-              <li><a href="#profil">{t.nav.profile}</a></li>
-              <li><a href="#arbeitsweise">{t.nav.work}</a></li>
-              <li><a href="#projekte">{t.nav.projects}</a></li>
-              <li><a href="#kontakt">{t.nav.contact}</a></li>
+              <li><a href="#profile">{t.nav.profile}</a></li>
+              <li><a href="#workflow">{t.nav.work}</a></li>
+              <li><a href="#projects">{t.nav.projects}</a></li>
+              <li><a href="#contact">{t.nav.contact}</a></li>
             </ul>
-            <div className="lang-switch">
-              <button
-                type="button"
-                className={lang === "de" ? "active" : ""}
-                onClick={() => setLang("de")}
-                aria-label="Deutsch"
-              >
-                DE
-              </button>
-              <button
-                type="button"
-                className={lang === "en" ? "active" : ""}
-                onClick={() => setLang("en")}
-                aria-label="English"
-              >
-                EN
-              </button>
-            </div>
           </div>
         </nav>
       </header>
@@ -158,12 +97,12 @@ export default function Home() {
               <h1 id="hero-title">{t.hero.title}</h1>
               <p className="hero-subtitle">{t.hero.subtitle}</p>
               <p className="hero-note">{t.hero.note}</p>
-              <a href="#projekte" className="hero-link">{t.hero.cta}</a>
+              <a href="#projects" className="hero-link">{t.hero.cta}</a>
             </div>
           </div>
         </section>
 
-        <section id="profil" aria-labelledby="profile-title">
+        <section id="profile" aria-labelledby="profile-title">
           <div className="container section-grid">
             <div className="section-header">
               <h2 id="profile-title">{t.profile.title}</h2>
@@ -175,7 +114,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="arbeitsweise" aria-labelledby="work-title">
+        <section id="workflow" aria-labelledby="work-title">
           <div className="container section-grid">
             <div className="section-header">
               <h2 id="work-title">{t.work.title}</h2>
@@ -191,7 +130,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="projekte" aria-labelledby="projects-title">
+        <section id="projects" aria-labelledby="projects-title">
           <div className="container section-grid">
             <div className="section-header">
               <h2 id="projects-title">{t.projects.title}</h2>
@@ -202,20 +141,32 @@ export default function Home() {
               <article className="surface">
                 <h3>{t.projects.featured.name}</h3>
                 <p>{t.projects.featured.summary}</p>
-                <p className="project-role">{t.projects.featured.role}</p>
-                <a href={t.projects.featured.link} target="_blank" rel="noopener noreferrer" className="project-link">
-                  {t.projects.featured.linkLabel}
-                </a>
+                <div className="project-actions">
+                  <Link href={t.projects.featured.detailsHref} className="project-link">
+                    {t.projects.featured.detailsLabel}
+                  </Link>
+                  <a href={t.projects.featured.projectHref} target="_blank" rel="noopener noreferrer" className="project-link">
+                    {t.projects.featured.projectLabel}
+                  </a>
+                </div>
               </article>
               <article className="surface">
                 <h3>{t.projects.side.name}</h3>
                 <p>{t.projects.side.summary}</p>
+                <div className="project-actions">
+                  <Link href={t.projects.side.detailsHref} className="project-link">
+                    {t.projects.side.detailsLabel}
+                  </Link>
+                  <Link href={t.projects.side.projectHref} className="project-link">
+                    {t.projects.side.projectLabel}
+                  </Link>
+                </div>
               </article>
             </div>
           </div>
         </section>
 
-        <section id="kontakt" aria-labelledby="contact-title">
+        <section id="contact" aria-labelledby="contact-title">
           <div className="container section-grid">
             <div className="section-header">
               <h2 id="contact-title">{t.contact.title}</h2>
@@ -242,7 +193,6 @@ export default function Home() {
                   </button>
                   {copyFeedback && <span className="copy-feedback">{copyFeedback}</span>}
                 </div>
-                <a href="https://github.com/im24a-wulkana" target="_blank" rel="noopener noreferrer">GitHub</a>
               </div>
             </div>
           </div>
