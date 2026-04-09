@@ -58,9 +58,82 @@ const content = {
 export default function Home() {
   const [isCopyMenuOpen, setIsCopyMenuOpen] = useState(false);
   const [copyFeedback, setCopyFeedback] = useState("");
+  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+  const [touchStartX, setTouchStartX] = useState(null);
   const t = content;
   const currentYear = new Date().getFullYear();
   const emailAddress = "aaron.wulkan@icloud.com";
+  const projectItems = [
+    {
+      name: t.projects.featured.name,
+      summary: t.projects.featured.summary,
+      detailsHref: t.projects.featured.detailsHref,
+      detailsLabel: t.projects.featured.detailsLabel,
+      projectHref: t.projects.featured.projectHref,
+      projectLabel: t.projects.featured.projectLabel,
+    },
+    {
+      name: t.projects.side.name,
+      summary: t.projects.side.summary,
+      detailsHref: t.projects.side.detailsHref,
+      detailsLabel: t.projects.side.detailsLabel,
+      projectHref: t.projects.side.projectHref,
+      projectLabel: t.projects.side.projectLabel,
+    },
+    {
+      name: "Battleship",
+      summary:
+        "Frontend for a Battleship game with a focus on clear game state, responsive interaction and a simple user flow.",
+      projectHref: "https://github.com/im24a-voegelie/Schiffeversenken-Frontend",
+      projectLabel: "Open frontend repo",
+      backendHref: "https://github.com/im24a-voegelie/Schiffeversenken-Backend",
+      backendLabel: "Open backend repo",
+    },
+    {
+      name: "Future project 02",
+      summary: "Placeholder for an upcoming project. Details will be added soon.",
+    },
+    {
+      name: "Future project 03",
+      summary: "Placeholder for an upcoming project. Details will be added soon.",
+    },
+  ];
+  const activeProject = projectItems[currentProjectIndex];
+
+  function goToProject(index) {
+    setCurrentProjectIndex(index);
+  }
+
+  function goToNextProject() {
+    setCurrentProjectIndex((prev) => (prev + 1) % projectItems.length);
+  }
+
+  function goToPreviousProject() {
+    setCurrentProjectIndex((prev) => (prev - 1 + projectItems.length) % projectItems.length);
+  }
+
+  function handleProjectTouchStart(event) {
+    setTouchStartX(event.changedTouches[0].clientX);
+  }
+
+  function handleProjectTouchEnd(event) {
+    if (touchStartX === null) {
+      return;
+    }
+
+    const touchEndX = event.changedTouches[0].clientX;
+    const deltaX = touchEndX - touchStartX;
+
+    if (Math.abs(deltaX) > 40) {
+      if (deltaX < 0) {
+        goToNextProject();
+      } else {
+        goToPreviousProject();
+      }
+    }
+
+    setTouchStartX(null);
+  }
 
   async function handleCopyEmail() {
     try {
@@ -134,34 +207,77 @@ export default function Home() {
           <div className="container section-grid">
             <div className="section-header">
               <h2 id="projects-title">{t.projects.title}</h2>
-              <p className="section-intro">{t.projects.intro}</p>
+              <p className="section-intro">{t.projects.intro} Swipe or use the dots to navigate.</p>
             </div>
 
-            <div className="work-list">
-              <article className="surface">
-                <h3>{t.projects.featured.name}</h3>
-                <p>{t.projects.featured.summary}</p>
-                <div className="project-actions">
-                  <Link href={t.projects.featured.detailsHref} className="project-link">
-                    {t.projects.featured.detailsLabel}
-                  </Link>
-                  <a href={t.projects.featured.projectHref} target="_blank" rel="noopener noreferrer" className="project-link">
-                    {t.projects.featured.projectLabel}
-                  </a>
-                </div>
-              </article>
-              <article className="surface">
-                <h3>{t.projects.side.name}</h3>
-                <p>{t.projects.side.summary}</p>
-                <div className="project-actions">
-                  <Link href={t.projects.side.detailsHref} className="project-link">
-                    {t.projects.side.detailsLabel}
-                  </Link>
-                  <Link href={t.projects.side.projectHref} className="project-link">
-                    {t.projects.side.projectLabel}
-                  </Link>
-                </div>
-              </article>
+            <div
+              className="project-slider"
+              onTouchStart={handleProjectTouchStart}
+              onTouchEnd={handleProjectTouchEnd}
+            >
+              <div className="project-slider-track">
+                <button
+                  type="button"
+                  className="project-nav-button"
+                  onClick={goToPreviousProject}
+                  aria-label="Previous project"
+                >
+                  {"<"}
+                </button>
+
+                <article className="surface project-slide">
+                  <h3>{activeProject.name}</h3>
+                  <p>{activeProject.summary}</p>
+                  <div className="project-actions">
+                    {activeProject.detailsHref ? (
+                      <Link href={activeProject.detailsHref} className="project-link">
+                        {activeProject.detailsLabel}
+                      </Link>
+                    ) : (
+                      <span className="project-link muted-link">Project page soon</span>
+                    )}
+                    {activeProject.projectHref ? (
+                      activeProject.projectHref.startsWith("http") ? (
+                        <a href={activeProject.projectHref} target="_blank" rel="noopener noreferrer" className="project-link">
+                          {activeProject.projectLabel}
+                        </a>
+                      ) : (
+                        <Link href={activeProject.projectHref} className="project-link">
+                          {activeProject.projectLabel}
+                        </Link>
+                      )
+                    ) : (
+                      <span className="project-link muted-link">Project link soon</span>
+                    )}
+                    {activeProject.backendHref ? (
+                      <a href={activeProject.backendHref} target="_blank" rel="noopener noreferrer" className="project-link">
+                        {activeProject.backendLabel}
+                      </a>
+                    ) : null}
+                  </div>
+                </article>
+
+                <button
+                  type="button"
+                  className="project-nav-button"
+                  onClick={goToNextProject}
+                  aria-label="Next project"
+                >
+                  {">"}
+                </button>
+              </div>
+
+              <div className="project-dots" aria-label="Project slider navigation">
+                {projectItems.map((item, index) => (
+                  <button
+                    key={item.name}
+                    type="button"
+                    className={index === currentProjectIndex ? "project-dot active" : "project-dot"}
+                    onClick={() => goToProject(index)}
+                    aria-label={`Go to ${item.name}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </section>

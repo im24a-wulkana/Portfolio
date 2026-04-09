@@ -4,23 +4,31 @@
   padding: 0;
 }
 
+:root {
+  --text-main: #dde7f6;
+  --text-muted: #c2cfe3;
+  --text-soft: #acbdd4;
+  --panel-bg: rgba(20, 28, 42, 0.86);
+  --panel-border: rgba(188, 205, 234, 0.2);
+  --accent: #8fb4ff;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   font-family: var(--font-roboto), "Roboto", sans-serif;
-  color: #e6ebf2;
+  color: var(--text-main);
   line-height: 1.65;
-  background:
-    radial-gradient(circle at 18% 14%, rgba(44, 70, 117, 0.2) 0%, rgba(44, 70, 117, 0) 35%),
-    linear-gradient(160deg, #090a0b 0%, #1a2233 52%, #2d2f33 100%);
+  background: #1a2233;
   min-height: 100vh;
+  letter-spacing: 0.01em;
 }
 
 h1, h2, h3 {
   font-family: var(--font-inter), "Inter", sans-serif;
-  color: #f4f7fb;
+  color: #ebf1f9;
   line-height: 1.2;
 }
 
@@ -38,13 +46,13 @@ h3 {
 }
 
 p {
-  color: #c5d0df;
+  color: var(--text-muted);
 }
 
 .container {
   max-width: 980px;
   margin: 0 auto;
-  padding: 0 1.4rem;
+  padding: 0 1.5rem;
 }
 
 .site-header {
@@ -57,8 +65,8 @@ nav {
   position: sticky;
   top: 0;
   z-index: 50;
-  border-bottom: 1px solid rgba(221, 230, 245, 0.1);
-  background: rgba(16, 19, 23, 0.72);
+  border-bottom: 1px solid rgba(221, 230, 245, 0.12);
+  background: rgba(24, 31, 46, 0.84);
   backdrop-filter: blur(10px);
 }
 
@@ -78,18 +86,22 @@ nav ul {
 }
 
 nav a {
-  color: #dce5f3;
+  color: #d2dced;
   text-decoration: none;
   font-size: 0.95rem;
   opacity: 0.95;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 nav a:hover {
-  color: #b1ceff;
+  color: #c1d8ff;
+  border-bottom-color: rgba(193, 216, 255, 0.65);
 }
 
 section {
-  padding: 3.8rem 0;
+  padding: 4.2rem 0;
 }
 
 .hero {
@@ -108,24 +120,26 @@ section {
 .hero-note {
   max-width: 58ch;
   font-size: 0.95rem;
-  color: #aab8cb;
+  color: var(--text-soft);
 }
 
 .hero-link {
   margin-top: 0.2rem;
   display: inline-flex;
   width: fit-content;
-  color: #e6efff;
+  color: #dbe7fa;
   text-decoration: none;
-  border: 1px solid rgba(186, 210, 245, 0.35);
-  background: rgba(26, 34, 51, 0.6);
+  border: 1px solid rgba(186, 210, 245, 0.3);
+  background: rgba(22, 30, 45, 0.65);
   padding: 0.55rem 0.9rem;
   border-radius: 9px;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 .hero-link:hover {
-  background: rgba(26, 34, 51, 0.9);
+  background: rgba(29, 40, 61, 0.95);
+  border-color: rgba(186, 210, 245, 0.5);
+  transform: translateY(-1px);
 }
 
 .section-grid {
@@ -139,11 +153,18 @@ section {
 }
 
 .surface {
-  border: 1px solid rgba(188, 205, 234, 0.2);
+  border: 1px solid var(--panel-border);
   border-radius: 12px;
-  background: rgba(16, 20, 27, 0.72);
+  background: var(--panel-bg);
   padding: 1.2rem;
-  box-shadow: 0 10px 22px rgba(4, 8, 14, 0.35);
+  box-shadow: 0 12px 28px rgba(4, 8, 14, 0.3);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.surface:hover {
+  border-color: rgba(166, 188, 225, 0.38);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(4, 8, 14, 0.36);
 }
 
 .text-block {
@@ -163,6 +184,7 @@ section {
 .section-intro {
   margin-top: 0.35rem;
   max-width: 70ch;
+  color: #b8c8df;
 }
 
 .project-role {
@@ -176,14 +198,15 @@ section {
   display: inline-flex;
   width: fit-content;
   text-decoration: none;
-  color: #d7e5fb;
-  border-bottom: 1px solid rgba(215, 229, 251, 0.4);
+  color: #cddcf3;
+  border-bottom: 1px solid rgba(205, 220, 243, 0.38);
   padding-bottom: 0.1rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .project-link:hover {
-  color: #ffffff;
-  border-bottom-color: rgba(255, 255, 255, 0.8);
+  color: #edf4ff;
+  border-bottom-color: rgba(237, 244, 255, 0.9);
 }
 
 .project-actions {
@@ -195,6 +218,77 @@ section {
 
 .project-actions .project-link {
   margin-top: 0;
+}
+
+.project-slider {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.project-slider-track {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: stretch;
+  gap: 0.7rem;
+}
+
+.project-slide {
+  min-height: 210px;
+}
+
+.project-nav-button {
+  border: 1px solid rgba(177, 199, 235, 0.35);
+  background: rgba(22, 30, 45, 0.72);
+  color: #cfddf2;
+  border-radius: 10px;
+  width: 2.4rem;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.project-nav-button:hover {
+  background: rgba(39, 52, 76, 0.95);
+  border-color: rgba(177, 199, 235, 0.55);
+  transform: translateY(-1px);
+}
+
+.project-nav-button:focus-visible,
+.project-dot:focus-visible {
+  outline: 2px solid #b9d2ff;
+  outline-offset: 2px;
+}
+
+.project-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.project-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(215, 229, 251, 0.6);
+  background: rgba(215, 229, 251, 0.18);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.project-dot:hover {
+  transform: scale(1.08);
+  background: rgba(215, 229, 251, 0.35);
+}
+
+.project-dot.active {
+  background: var(--accent);
+}
+
+.muted-link {
+  color: #9fb1cb;
+  border-bottom-color: rgba(159, 177, 203, 0.36);
+  cursor: default;
 }
 
 .project-page {
@@ -249,8 +343,8 @@ section {
 .contact-links a,
 .contact-link-button {
   border: 1px solid rgba(177, 199, 235, 0.35);
-  background: rgba(26, 34, 51, 0.68);
-  color: #dce8fa;
+  background: rgba(22, 30, 45, 0.72);
+  color: #cfddf2;
   border-radius: 8px;
   padding: 0.58rem 0.9rem;
   text-decoration: none;
@@ -289,17 +383,17 @@ section {
 .copy-feedback {
   margin-top: 0.4rem;
   font-size: 0.78rem;
-  color: #b8d5ff;
+  color: #b8cdee;
 }
 
 footer {
   border-top: 1px solid rgba(206, 221, 245, 0.12);
-  margin-top: 1rem;
+  margin-top: 1.3rem;
   padding: 1.5rem 0 1.9rem;
 }
 
 footer p {
-  color: #a3b2c8;
+  color: #a3b3cb;
   font-size: 0.9rem;
 }
 
@@ -325,5 +419,18 @@ footer p {
   .contact-links {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .project-slider-track {
+    grid-template-columns: 1fr;
+  }
+
+  .project-nav-button {
+    width: 100%;
+    min-height: 2.2rem;
+  }
+
+  .surface:hover {
+    transform: none;
   }
 }
