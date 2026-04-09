@@ -8,7 +8,6 @@ const content = {
   hero: {
     title: "Aaron Wulkan",
     subtitle: "IMS student at KSH (year 2), computer science track.",
-    note: "This site documents real school and side projects. No marketing copy, just actual work.",
     cta: "See projects",
   },
   profile: {
@@ -47,7 +46,6 @@ const content = {
   },
   contact: {
     title: "Contact",
-    text: "If you want to discuss a school project or small idea, feel free to send a quick email.",
     copyAction: "Copy",
     copied: "Copied!",
     copyFailed: "Copy failed",
@@ -169,7 +167,6 @@ export default function Home() {
             <div className="hero-content">
               <h1 id="hero-title">{t.hero.title}</h1>
               <p className="hero-subtitle">{t.hero.subtitle}</p>
-              <p className="hero-note">{t.hero.note}</p>
               <a href="#projects" className="hero-link">{t.hero.cta}</a>
             </div>
           </div>
@@ -287,8 +284,7 @@ export default function Home() {
             <div className="section-header">
               <h2 id="contact-title">{t.contact.title}</h2>
             </div>
-            <div className="surface contact-content">
-              <p>{t.contact.text}</p>
+            <div className="contact-content">
               <div className="contact-links">
                 <div className="email-copy-wrapper">
                   {isCopyMenuOpen && (
