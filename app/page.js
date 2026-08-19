@@ -209,7 +209,6 @@ export default function Home() {
               <h2 id="contact-title">{t.contact.title}</h2>
             </div>
             <div className="surface contact-content">
-              <p>{t.contact.text}</p>
               <div className="contact-links">
                 <div className="email-copy-wrapper">
                   {isCopyMenuOpen && (

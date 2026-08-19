@@ -34,6 +34,23 @@ h1 {
 
 h2 {
   font-size: clamp(1.4rem, 2.5vw, 2rem);
+  color: #ffffff;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: #4A90E2;
+  border-radius: 2px;
 }
 
 h3 {
@@ -68,7 +85,7 @@ nav {
 .nav-inner {
   min-height: 68px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   gap: 1rem;
 }
@@ -78,6 +95,7 @@ nav ul {
   display: flex;
   gap: 1.25rem;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 nav a {
@@ -102,6 +120,7 @@ section {
 .hero-content {
   display: grid;
   gap: 0.5rem;
+  text-align: center;
 }
 
 .hero-subtitle {
@@ -119,10 +138,14 @@ section {
   display: grid;
   gap: 0.85rem;
   max-width: 760px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .section-header {
-  margin-bottom: 0.05rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  padding: 2rem 0;
 }
 
 .surface {
@@ -135,15 +158,15 @@ section {
 }
 
 .surface:hover {
-  background: rgba(30, 36, 48, 0.6);
-  box-shadow: 0 20px 40px rgba(74, 144, 226, 0.15);
-  border-color: rgba(74, 144, 226, 0.4);
-  transform: translateY(-8px);
+  background: rgba(30, 36, 48, 0.55);
+  border-color: rgba(74, 144, 226, 0.35);
+  box-shadow: 0 10px 25px rgba(74, 144, 226, 0.1);
 }
 
 .text-block {
   display: grid;
   gap: 0.95rem;
+  text-align: center;
 }
 
 .work-list {
@@ -159,6 +182,7 @@ section {
 .skills-categories {
   display: grid;
   gap: 1.5rem;
+  text-align: center;
 }
 
 .skill-category {
@@ -170,12 +194,13 @@ section {
 }
 
 .skill-category:hover {
-  background: rgba(30, 36, 48, 0.5);
-  border-color: rgba(74, 144, 226, 0.2);
+  background: rgba(30, 36, 48, 0.55);
+  border-color: rgba(74, 144, 226, 0.35);
+  box-shadow: 0 10px 25px rgba(74, 144, 226, 0.1);
 }
 
 .skill-category h3 {
-  color: #4A90E2;
+  color: #ffffff;
   font-size: 1.2rem;
   font-weight: 600;
   text-transform: capitalize;
@@ -186,13 +211,14 @@ section {
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
+  justify-content: center;
 }
 
 .skill-tag {
   display: inline-block;
-  background: rgba(74, 144, 226, 0.15);
-  border: 1px solid rgba(74, 144, 226, 0.3);
-  color: #d7e5fb;
+  background: rgba(26, 34, 51, 0.68);
+  border: 1px solid rgba(177, 199, 235, 0.35);
+  color: #dce8fa;
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
   font-size: 0.95rem;
@@ -200,9 +226,13 @@ section {
   transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
+.skill-tag:hover {
+  background: rgba(39, 52, 76, 0.8);
+  border-color: rgba(177, 199, 235, 0.5);
+}
+
 .section-intro {
-  margin-top: 0.35rem;
-  max-width: 70ch;
+  display: none;
 }
 
 .project-role {
@@ -245,6 +275,11 @@ section {
   display: flex;
   flex-wrap: wrap;
   gap: 0.9rem;
+  justify-content: center;
+}
+
+.work-list {
+  text-align: center;
 }
 
 .project-actions .project-link {
@@ -290,7 +325,12 @@ section {
 }
 
 .contact-content {
-  max-width: 720px;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: auto;
+  padding: 2.5rem 2rem !important;
 }
 
 .contact-links {
@@ -298,6 +338,8 @@ section {
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
+  width: 100%;
+  justify-content: center;
 }
 
 .contact-links a,
@@ -306,16 +348,18 @@ section {
   background: rgba(26, 34, 51, 0.68);
   color: #dce8fa;
   border-radius: 8px;
-  padding: 0.58rem 0.9rem;
+  padding: 1rem 2rem;
   text-decoration: none;
   font: inherit;
   font-weight: 500;
   cursor: pointer;
+  font-size: 1.1rem;
 }
 
 .contact-links a:hover,
 .contact-link-button:hover {
-  background: rgba(39, 52, 76, 0.95);
+  background: rgba(30, 36, 48, 0.5);
+  border-color: rgba(74, 144, 226, 0.2);
 }
 
 .email-copy-wrapper {
@@ -350,6 +394,7 @@ footer {
   border-top: 1px solid rgba(206, 221, 245, 0.12);
   margin-top: 1rem;
   padding: 1.5rem 0 1.9rem;
+  text-align: center;
 }
 
 footer p {
