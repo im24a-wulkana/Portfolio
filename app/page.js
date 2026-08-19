@@ -8,8 +8,6 @@ const content = {
   hero: {
     title: "Aaron Wulkan",
     subtitle: "Full Stack Developer | Creative Problem Solver",
-    note: "This site documents real school and side projects. No marketing copy, just actual work.",
-    cta: "See projects",
   },
   profile: {
     title: "About me",
@@ -101,8 +99,6 @@ export default function Home() {
             <div className="hero-content">
               <h1 id="hero-title">{t.hero.title}</h1>
               <p className="hero-subtitle">{t.hero.subtitle}</p>
-              <p className="hero-note">{t.hero.note}</p>
-              <a href="#projects" className="hero-link">{t.hero.cta}</a>
             </div>
           </div>
         </section>
