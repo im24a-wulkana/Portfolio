@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - IMS Schüler Informatik</title>
+    <title>Portfolio - Aaron Wulkan</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +26,7 @@
             font-family: 'Roboto', sans-serif;
             font-weight: 400;
             color: #ffffff;
-            background: linear-gradient(135deg, #090A0B 0%, #1A2233 50%, #090A0B 100%);
+            background: linear-gradient(135deg, #0f1117 0%, #161b22 50%, #0f1117 100%);
             background-attachment: fixed;
             line-height: 1.6;
             overflow-x: hidden;
@@ -57,17 +57,18 @@
         p {
             margin-bottom: 1rem;
             font-weight: 300;
+            letter-spacing: 0.3px;
         }
         
         /* ===== Navigation ===== */
         nav {
             position: sticky;
             top: 0;
-            background: rgba(26, 34, 51, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
+            background: rgba(15, 17, 23, 0.8);
+            backdrop-filter: blur(15px);
+            padding: 1.2rem 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
         
         nav .container {
@@ -98,18 +99,19 @@
         nav a:hover {
             color: #4A90E2;
         }
-        
+
         nav a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -8px;
             left: 0;
             width: 0;
             height: 2px;
             background: #4A90E2;
-            transition: width 0.3s ease;
+            transition: width 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+            border-radius: 1px;
         }
-        
+
         nav a:hover::after {
             width: 100%;
         }
@@ -137,13 +139,13 @@
         }
         
         .hero-content h1 {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             background: linear-gradient(135deg, #ffffff 0%, #4A90E2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         .hero-content p {
             font-size: 1.25rem;
             color: rgba(255, 255, 255, 0.8);
@@ -154,7 +156,7 @@
         /* ===== Section Headers ===== */
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 0.05rem;
         }
         
         .section-header h2 {
@@ -177,7 +179,7 @@
         
         /* ===== About Section ===== */
         .about {
-            background: rgba(26, 34, 51, 0.3);
+            background: rgba(30, 36, 48, 0.15);
         }
         
         .about-content {
@@ -201,18 +203,19 @@
         }
         
         .skill-card {
-            background: rgba(45, 47, 51, 0.6);
-            border-radius: 12px;
-            padding: 2rem;
+            background: rgba(30, 36, 48, 0.4);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        
+
         .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.2);
-            border-color: rgba(74, 144, 226, 0.3);
+            transform: translateY(-8px);
+            background: rgba(30, 36, 48, 0.6);
+            box-shadow: 0 20px 40px rgba(74, 144, 226, 0.15);
+            border-color: rgba(74, 144, 226, 0.4);
         }
         
         .skill-card h3 {
@@ -227,7 +230,7 @@
         
         /* ===== Projects Section ===== */
         .projects {
-            background: rgba(26, 34, 51, 0.3);
+            background: rgba(30, 36, 48, 0.15);
         }
         
         .projects-grid {
@@ -238,17 +241,18 @@
         }
         
         .project-card {
-            background: rgba(45, 47, 51, 0.6);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(30, 36, 48, 0.4);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        
+
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.2);
-            border-color: rgba(74, 144, 226, 0.3);
+            transform: translateY(-8px);
+            background: rgba(30, 36, 48, 0.6);
+            box-shadow: 0 20px 40px rgba(74, 144, 226, 0.15);
+            border-color: rgba(74, 144, 226, 0.4);
         }
         
         .project-card h3 {
@@ -266,26 +270,33 @@
             color: #4A90E2;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+            position: relative;
+            padding-bottom: 2px;
         }
-        
+
+        .project-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4A90E2;
+            transition: width 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
         .project-link:hover {
             color: #6BA3E8;
         }
-        
-        .project-link::after {
-            content: ' →';
-            transition: transform 0.3s ease;
-            display: inline-block;
-        }
-        
+
         .project-link:hover::after {
-            transform: translateX(5px);
+            width: 100%;
         }
         
         /* ===== Kontakt Section ===== */
         .contact {
-            background: rgba(26, 34, 51, 0.3);
+            background: rgba(30, 36, 48, 0.15);
         }
         
         .contact-content {
@@ -309,24 +320,25 @@
             color: #4A90E2;
             text-decoration: none;
             font-weight: 500;
-            padding: 0.75rem 1.25rem;
-            background: rgba(45, 47, 51, 0.6);
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: background 0.3s ease, border-color 0.3s ease;
+            padding: 0.85rem 1.5rem;
+            background: rgba(30, 36, 48, 0.4);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
         }
-        
+
         .contact-links a:hover {
-            background: rgba(45, 47, 51, 0.9);
-            border-color: rgba(74, 144, 226, 0.3);
+            background: rgba(30, 36, 48, 0.7);
+            border-color: rgba(74, 144, 226, 0.4);
+            transform: translateY(-2px);
         }
         
         /* ===== Footer ===== */
         footer {
-            background: rgba(9, 10, 11, 0.8);
+            background: rgba(15, 17, 23, 0.6);
             padding: 2rem 0;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
         
         footer p {
@@ -401,69 +413,81 @@
     <nav>
         <div class="container">
             <ul>
-                <li><a href="#ueber-mich">Über mich</a></li>
-                <li><a href="#faehigkeiten">Fähigkeiten</a></li>
-                <li><a href="#projekte">Projekte</a></li>
-                <li><a href="#kontakt">Kontakt</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
-    
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Portfolio</h1>
-                <p>IMS-Schüler mit Schwerpunkt Informatik</p>
+                <h1>Aaron Wulkan</h1>
+                <p>Full Stack Developer | Creative Problem Solver</p>
             </div>
         </div>
     </section>
-    
-    <!-- Über mich Section -->
-    <section id="ueber-mich" class="about">
+
+    <!-- About Section -->
+    <section id="about" class="about">
         <div class="container">
             <div class="section-header">
-                <h2>Über mich</h2>
+                <h2>About Me</h2>
             </div>
             <div class="about-content">
                 <p>
-                    Ich bin IMS-Schüler an der Kantonsschule Hottingen (KSH) im zweiten Jahr mit Schwerpunkt Informatik. Während meiner Ausbildung beschäftige ich mich mit Programmierung und grundlegenden IT-Themen. Besonders interessiert mich das Arbeiten mit Software und Webtechnologien, da mir logisches Denken und strukturiertes Arbeiten liegen.
+                    I'm passionate about building elegant, scalable web applications using modern technologies. I love solving complex problems and creating intuitive user experiences that make a real impact.
                 </p>
                 <p>
-                    Ich arbeite zuverlässig und konzentriert, bin lernbereit und motiviert, meine fachlichen Kenntnisse kontinuierlich zu erweitern. Neue Aufgaben gehe ich sorgfältig an und lege Wert auf saubere und verständliche Lösungen.
+                    With expertise in full-stack development, I focus on writing clean, maintainable code and staying at the forefront of web development trends. I'm always eager to take on new challenges and collaborate on exciting projects.
                 </p>
             </div>
         </div>
     </section>
-    
-    <!-- Fähigkeiten Section -->
-    <section id="faehigkeiten">
+
+    <!-- Skills Section -->
+    <section id="skills">
         <div class="container">
             <div class="section-header">
-                <h2>Fähigkeiten</h2>
+                <h2>Skills</h2>
             </div>
             <div class="skills-grid">
                 <div class="skill-card">
                     <h3>Python</h3>
-                    <p>Grundlegende Programmierkenntnisse, einfache Programme</p>
+                    <p>Core programming, algorithms, and scripting</p>
                 </div>
                 <div class="skill-card">
-                    <h3>MySQL</h3>
-                    <p>Datenbanken, einfache Abfragen</p>
+                    <h3>JavaScript & React</h3>
+                    <p>Modern web development and interactive applications</p>
                 </div>
                 <div class="skill-card">
                     <h3>HTML & CSS</h3>
-                    <p>Struktur und Gestaltung einfacher Webseiten</p>
+                    <p>Semantic markup and responsive design</p>
+                </div>
+                <div class="skill-card">
+                    <h3>MySQL</h3>
+                    <p>Database design and SQL queries</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Next.js</h3>
+                    <p>Full-stack web development and deployment</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Git & GitHub</h3>
+                    <p>Version control and collaboration</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Projekte Section -->
-    <section id="projekte" class="projects">
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
         <div class="container">
             <div class="section-header">
-                <h2>Projekte</h2>
+                <h2>Projects</h2>
             </div>
             <div class="projects-grid">
                 <div class="project-card">
@@ -507,7 +531,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Aaron Wulkan - All rights reserved</p>
+            <p>&copy; 2026 Aaron Wulkan - All rights reserved</p>
         </div>
     </footer>
 </body>
