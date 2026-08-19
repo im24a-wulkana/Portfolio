@@ -63,7 +63,7 @@ export default function Home() {
   const [copyFeedback, setCopyFeedback] = useState("");
   const t = content;
   const currentYear = new Date().getFullYear();
-  const emailAddress = "aaron.wulkan@icloud.com";
+  const emailAddress = "aaronwulkan.dev@gmail.com";
 
   async function handleCopyEmail() {
     try {
@@ -212,6 +212,9 @@ export default function Home() {
                   </button>
                   {copyFeedback && <span className="copy-feedback">{copyFeedback}</span>}
                 </div>
+                <a href="https://github.com/im24a-wulkana" target="_blank" rel="noopener noreferrer" className="contact-link-button">
+                  GitHub
+                </a>
               </div>
             </div>
           </div>
