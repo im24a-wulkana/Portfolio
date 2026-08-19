@@ -11,27 +11,32 @@ const content = {
   },
   profile: {
     title: "About me",
-    p1: "I'm passionate about building elegant, scalable web applications using modern technologies. I love solving complex problems and creating intuitive user experiences that make a real impact.",
-    p2: "With expertise in full-stack development, I focus on writing clean, maintainable code and staying at the forefront of web development trends. I'm always eager to take on new challenges and collaborate on exciting projects.",
+    p1: "Hey! I'm Aaron, a 15-year-old developer from Männedorf, Switzerland. I'm passionate about building cool web applications and solving problems with code.",
+    p2: "I speak German (C2) and English (C1), and I'm constantly learning new technologies. When I'm not coding, I'm exploring new frameworks and experimenting with full-stack development. I love collaborating on projects and creating things that actually matter.",
   },
   work: {
     title: "Skills",
-    items: [
-      { title: "TypeScript", text: "Type-safe JavaScript development" },
-      { title: "JavaScript", text: "Core web development language" },
-      { title: "Python", text: "Core programming, algorithms, and scripting" },
-      { title: "Java", text: "Object-oriented programming and backend development" },
-      { title: "Next.js", text: "Full-stack web development and deployment" },
-      { title: "React", text: "Interactive UI components and state management" },
-      { title: "Tailwind CSS", text: "Utility-first CSS framework for modern design" },
-      { title: "Flask", text: "Python web framework for building APIs" },
-      { title: "MySQL", text: "Database design and SQL queries" },
-      { title: "PostgreSQL", text: "Advanced relational database management" },
-      { title: "MongoDB", text: "NoSQL database for flexible data storage" },
-      { title: "Git & GitHub", text: "Version control and collaboration" },
-      { title: "Docker", text: "Containerization and deployment" },
-      { title: "Vercel", text: "Hosting and deployment platform" },
-      { title: "Neon", text: "Serverless Postgres database" },
+    categories: [
+      {
+        name: "Languages",
+        items: ["TypeScript", "JavaScript", "Python", "Java"],
+      },
+      {
+        name: "Frameworks",
+        items: ["Next.js", "React", "Tailwind CSS", "Flask"],
+      },
+      {
+        name: "Databases",
+        items: ["MySQL", "PostgreSQL", "MongoDB"],
+      },
+      {
+        name: "Tools",
+        items: ["Git & GitHub", "Docker", "Vercel", "Neon"],
+      },
+      {
+        name: "Certificates",
+        items: ["Abacus Anwender 2026"],
+      },
     ],
   },
   projects: {
@@ -129,12 +134,16 @@ export default function Home() {
             <div className="section-header">
               <h2 id="work-title">{t.work.title}</h2>
             </div>
-            <div className="work-list">
-              {t.work.items.map((item) => (
-                <article className="surface work-item" key={item.title}>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </article>
+            <div className="skills-categories">
+              {t.work.categories.map((category) => (
+                <div key={category.name} className="skill-category">
+                  <h3>{category.name}</h3>
+                  <div className="skill-tags">
+                    {category.items.map((item) => (
+                      <span key={item} className="skill-tag">{item}</span>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </div>
