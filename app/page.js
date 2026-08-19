@@ -173,6 +173,15 @@ export default function Home() {
                   )}
                 </div>
               </article>
+              <article className="surface">
+                <h3>Portfolio</h3>
+                <p>This modern portfolio website showcasing my web development skills with clean architecture and responsive design.</p>
+                <div className="project-actions">
+                  <a href="https://github.com/im24a-wulkana/Portfolio" target="_blank" rel="noopener noreferrer" className="project-link">
+                    View on GitHub
+                  </a>
+                </div>
+              </article>
             </div>
           </div>
         </section>
