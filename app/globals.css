@@ -10,11 +10,10 @@ html {
 
 body {
   font-family: var(--font-roboto), "Roboto", sans-serif;
-  color: #e6ebf2;
-  line-height: 1.65;
-  background:
-    radial-gradient(circle at 18% 14%, rgba(44, 70, 117, 0.2) 0%, rgba(44, 70, 117, 0) 35%),
-    linear-gradient(160deg, #090a0b 0%, #1a2233 52%, #2d2f33 100%);
+  color: #ffffff;
+  line-height: 1.6;
+  background: linear-gradient(135deg, #0f1117 0%, #161b22 50%, #0f1117 100%);
+  background-attachment: fixed;
   min-height: 100vh;
 }
 
@@ -57,9 +56,9 @@ nav {
   position: sticky;
   top: 0;
   z-index: 50;
-  border-bottom: 1px solid rgba(221, 230, 245, 0.1);
-  background: rgba(16, 19, 23, 0.72);
-  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 17, 23, 0.8);
+  backdrop-filter: blur(15px);
 }
 
 .nav-inner {
@@ -123,11 +122,19 @@ section {
 }
 
 .surface {
-  border: 1px solid rgba(188, 205, 234, 0.2);
-  border-radius: 12px;
-  background: rgba(16, 20, 27, 0.72);
-  padding: 1.2rem;
-  box-shadow: 0 10px 22px rgba(4, 8, 14, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background: rgba(30, 36, 48, 0.4);
+  padding: 2.5rem 2rem;
+  box-shadow: none;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.surface:hover {
+  background: rgba(30, 36, 48, 0.6);
+  box-shadow: 0 20px 40px rgba(74, 144, 226, 0.15);
+  border-color: rgba(74, 144, 226, 0.4);
+  transform: translateY(-8px);
 }
 
 .text-block {
@@ -157,18 +164,32 @@ section {
 }
 
 .project-link {
-  margin-top: 0.85rem;
-  display: inline-flex;
-  width: fit-content;
+  display: inline-block;
+  color: #4A90E2;
   text-decoration: none;
-  color: #d7e5fb;
-  border-bottom: 1px solid rgba(215, 229, 251, 0.4);
-  padding-bottom: 0.1rem;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.project-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #4A90E2;
+  transition: width 0.3s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
 .project-link:hover {
-  color: #ffffff;
-  border-bottom-color: rgba(255, 255, 255, 0.8);
+  color: #6BA3E8;
+}
+
+.project-link:hover::after {
+  width: 100%;
 }
 
 .project-actions {
