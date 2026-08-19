@@ -7,21 +7,24 @@ const content = {
   nav: { profile: "Profile", work: "Workflow", projects: "Projects", contact: "Contact" },
   hero: {
     title: "Aaron Wulkan",
-    subtitle: "IMS student at KSH (year 2), computer science track.",
+    subtitle: "Full Stack Developer | Creative Problem Solver",
     note: "This site documents real school and side projects. No marketing copy, just actual work.",
     cta: "See projects",
   },
   profile: {
     title: "About me",
-    p1: "I am currently in year 2 of IMS at Kantonsschule Hottingen. Most school projects I do are in Python, SQL and core web tech.",
-    p2: "I prefer clean and readable code over clever but hard-to-maintain solutions.",
+    p1: "I'm passionate about building elegant, scalable web applications using modern technologies. I love solving complex problems and creating intuitive user experiences that make a real impact.",
+    p2: "With expertise in full-stack development, I focus on writing clean, maintainable code and staying at the forefront of web development trends. I'm always eager to take on new challenges and collaborate on exciting projects.",
   },
   work: {
-    title: "How I work right now",
+    title: "Skills",
     items: [
-      { title: "Frontend", text: "Next.js, React, HTML and CSS. I keep components direct and easy to read." },
-      { title: "Backend / Data", text: "Python and MySQL for basic APIs, queries and small data models." },
-      { title: "Workflow", text: "Small commits and short code notes for better traceability." },
+      { title: "Python", text: "Core programming, algorithms, and scripting" },
+      { title: "JavaScript & React", text: "Modern web development and interactive applications" },
+      { title: "HTML & CSS", text: "Semantic markup and responsive design" },
+      { title: "MySQL", text: "Database design and SQL queries" },
+      { title: "Next.js", text: "Full-stack web development and deployment" },
+      { title: "Git & GitHub", text: "Version control and collaboration" },
     ],
   },
   projects: {
