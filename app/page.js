@@ -26,23 +26,25 @@ const content = {
   },
   projects: {
     title: "Projects",
-    intro: "Two projects that represent my current level best:",
+    intro: "Three projects that represent my current level best:",
     featured: {
-      name: "Gaming Incentives",
+      name: "Boared",
       summary:
-        "Team project for reward rules, points and small reports. My part focused on data structure and UI implementation.",
-      detailsHref: "/projekte/gaming-incentives",
+        "A multiplayer web platform featuring classic board games like Chess, Nine Men's Morris, and Connect Four. Play against real opponents online.",
+      detailsHref: null,
       detailsLabel: "Open project page",
-      projectHref: "https://github.com/im24a-mendolag/Prwr-good",
-      projectLabel: "Open project link",
+      projectHref: "https://github.com/im24a-wulkana/Boared",
+      projectLabel: "View on GitHub",
     },
     side: {
-      name: "Portfolio Website",
-      summary: "This website is my ongoing practice project. I keep improving it while learning.",
-      detailsHref: "/projekte/portfolio-website",
+      name: "Casino Tower",
+      summary: "An interactive casino tower game built with Next.js and React. Explore the live demo or check out the source code.",
+      detailsHref: null,
       detailsLabel: "Open project page",
-      projectHref: "/#hero-title",
-      projectLabel: "Open project link",
+      projectHref: "https://casino-tower.vercel.app/",
+      projectLabel: "Live Demo",
+      backendHref: "https://github.com/im24a-wulkana/casino-tower",
+      backendLabel: "View on GitHub",
     },
   },
   contact: {
@@ -142,9 +144,11 @@ export default function Home() {
                 <h3>{t.projects.featured.name}</h3>
                 <p>{t.projects.featured.summary}</p>
                 <div className="project-actions">
-                  <Link href={t.projects.featured.detailsHref} className="project-link">
-                    {t.projects.featured.detailsLabel}
-                  </Link>
+                  {t.projects.featured.detailsHref && (
+                    <Link href={t.projects.featured.detailsHref} className="project-link">
+                      {t.projects.featured.detailsLabel}
+                    </Link>
+                  )}
                   <a href={t.projects.featured.projectHref} target="_blank" rel="noopener noreferrer" className="project-link">
                     {t.projects.featured.projectLabel}
                   </a>
@@ -154,12 +158,19 @@ export default function Home() {
                 <h3>{t.projects.side.name}</h3>
                 <p>{t.projects.side.summary}</p>
                 <div className="project-actions">
-                  <Link href={t.projects.side.detailsHref} className="project-link">
-                    {t.projects.side.detailsLabel}
-                  </Link>
-                  <Link href={t.projects.side.projectHref} className="project-link">
+                  {t.projects.side.detailsHref && (
+                    <Link href={t.projects.side.detailsHref} className="project-link">
+                      {t.projects.side.detailsLabel}
+                    </Link>
+                  )}
+                  <a href={t.projects.side.projectHref} target="_blank" rel="noopener noreferrer" className="project-link">
                     {t.projects.side.projectLabel}
-                  </Link>
+                  </a>
+                  {t.projects.side.backendHref && (
+                    <a href={t.projects.side.backendHref} target="_blank" rel="noopener noreferrer" className="project-link">
+                      {t.projects.side.backendLabel}
+                    </a>
+                  )}
                 </div>
               </article>
             </div>
