@@ -170,10 +170,8 @@ section {
 }
 
 .skill-category:hover {
-  background: rgba(30, 36, 48, 0.6);
-  box-shadow: 0 20px 40px rgba(74, 144, 226, 0.15);
-  border-color: rgba(74, 144, 226, 0.4);
-  transform: translateY(-8px);
+  background: rgba(30, 36, 48, 0.5);
+  border-color: rgba(74, 144, 226, 0.2);
 }
 
 .skill-category h3 {
