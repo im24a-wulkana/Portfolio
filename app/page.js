@@ -11,7 +11,7 @@ const content = {
   },
   profile: {
     title: "About me",
-    p1: "Hey! I'm Aaron, a 15-year-old developer from Männedorf, Switzerland. I'm passionate about building cool web applications and solving problems with code.",
+    p1: "Hey! I'm Aaron, a 15-year-old developer from Männedorf, Switzerland. I attend IMS Hottingen Zürich and I'm passionate about building cool web applications and solving problems with code.",
     p2: "I speak German (C2) and English (C1), and I'm constantly learning new technologies. When I'm not coding, I'm exploring new frameworks and experimenting with full-stack development. I love collaborating on projects and creating things that actually matter.",
   },
   work: {
