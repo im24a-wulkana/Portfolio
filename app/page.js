@@ -45,7 +45,7 @@ const content = {
     featured: {
       name: "Boared",
       summary:
-        "A multiplayer web platform featuring classic board games like Chess, Nine Men's Morris, and Connect Four. Play against bots or real players with local multiplayer (online coming soon).",
+        "Board game website with chess, nine men's morris and connect four, playable locally in multiplayer or against bots.",
       detailsHref: null,
       detailsLabel: "Open project page",
       projectHref: "https://github.com/im24a-wulkana/Boared",
@@ -53,21 +53,23 @@ const content = {
     },
     side: {
       name: "Casino Tower",
-      summary: "An interactive casino tower game built with Next.js and React. Explore the live demo or check out the source code.",
+      summary: "Gambling website where you can climb different floors with online multiplayer and 19 different games.",
       detailsHref: null,
       detailsLabel: "Open project page",
       projectHref: "https://casino-tower.vercel.app/",
-      projectLabel: "Live Demo",
+      projectLabel: "Play Now",
       backendHref: "https://github.com/im24a-wulkana/casino-tower",
       backendLabel: "View on GitHub",
     },
     third: {
       name: "Trackworks",
-      summary: "An online multiplayer racing game where you build your track with obstacles first, and then race on it against your friends.",
+      summary: "Online multiplayer racing game where you build your own track with obstacles first and then race against friends.",
       detailsHref: null,
       detailsLabel: "Open project page",
       projectHref: "https://sensitive-reserve.669ceb1.deploio.app/",
       projectLabel: "Play Now",
+      backendHref: "https://github.com/im24a-mendolag/hackathon-2026.git",
+      backendLabel: "View on GitHub",
     },
   },
   contact: {
@@ -166,20 +168,6 @@ export default function Home() {
 
             <div className="work-list">
               <article className="surface">
-                <h3>{t.projects.featured.name}</h3>
-                <p>{t.projects.featured.summary}</p>
-                <div className="project-actions">
-                  {t.projects.featured.detailsHref && (
-                    <Link href={t.projects.featured.detailsHref} className="project-link">
-                      {t.projects.featured.detailsLabel}
-                    </Link>
-                  )}
-                  <a href={t.projects.featured.projectHref} target="_blank" rel="noopener noreferrer" className="project-link">
-                    {t.projects.featured.projectLabel}
-                  </a>
-                </div>
-              </article>
-              <article className="surface">
                 <h3>{t.projects.side.name}</h3>
                 <p>{t.projects.side.summary}</p>
                 <div className="project-actions">
@@ -209,6 +197,34 @@ export default function Home() {
                   )}
                   <a href={t.projects.third.projectHref} target="_blank" rel="noopener noreferrer" className="project-link">
                     {t.projects.third.projectLabel}
+                  </a>
+                  {t.projects.third.backendHref && (
+                    <a href={t.projects.third.backendHref} target="_blank" rel="noopener noreferrer" className="project-link">
+                      {t.projects.third.backendLabel}
+                    </a>
+                  )}
+                </div>
+              </article>
+              <article className="surface">
+                <h3>{t.projects.featured.name}</h3>
+                <p>{t.projects.featured.summary}</p>
+                <div className="project-actions">
+                  {t.projects.featured.detailsHref && (
+                    <Link href={t.projects.featured.detailsHref} className="project-link">
+                      {t.projects.featured.detailsLabel}
+                    </Link>
+                  )}
+                  <a href={t.projects.featured.projectHref} target="_blank" rel="noopener noreferrer" className="project-link">
+                    {t.projects.featured.projectLabel}
+                  </a>
+                </div>
+              </article>
+              <article className="surface">
+                <h3>Portfolio</h3>
+                <p>Personal portfolio with projects and their GitHub repos, contact details and more.</p>
+                <div className="project-actions">
+                  <a href="https://github.com/im24a-wulkana/Portfolio" target="_blank" rel="noopener noreferrer" className="project-link">
+                    View on GitHub
                   </a>
                 </div>
               </article>
