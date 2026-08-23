@@ -45,7 +45,7 @@ const content = {
     featured: {
       name: "Boared",
       summary:
-        "A multiplayer web platform featuring classic board games like Chess, Nine Men's Morris, and Connect Four. Play against real opponents online.",
+        "A multiplayer web platform featuring classic board games like Chess, Nine Men's Morris, and Connect Four. Play against bots or real players with local multiplayer (online coming soon).",
       detailsHref: null,
       detailsLabel: "Open project page",
       projectHref: "https://github.com/im24a-wulkana/Boared",
@@ -60,6 +60,14 @@ const content = {
       projectLabel: "Live Demo",
       backendHref: "https://github.com/im24a-wulkana/casino-tower",
       backendLabel: "View on GitHub",
+    },
+    third: {
+      name: "Trackworks",
+      summary: "An online multiplayer racing game where you build your track with obstacles first, and then race on it against your friends.",
+      detailsHref: null,
+      detailsLabel: "Open project page",
+      projectHref: "https://sensitive-reserve.669ceb1.deploio.app/",
+      projectLabel: "Play Now",
     },
   },
   contact: {
@@ -191,11 +199,16 @@ export default function Home() {
                 </div>
               </article>
               <article className="surface">
-                <h3>Portfolio</h3>
-                <p>This modern portfolio website showcasing my web development skills with clean architecture and responsive design.</p>
+                <h3>{t.projects.third.name}</h3>
+                <p>{t.projects.third.summary}</p>
                 <div className="project-actions">
-                  <a href="https://github.com/im24a-wulkana/Portfolio" target="_blank" rel="noopener noreferrer" className="project-link">
-                    View on GitHub
+                  {t.projects.third.detailsHref && (
+                    <Link href={t.projects.third.detailsHref} className="project-link">
+                      {t.projects.third.detailsLabel}
+                    </Link>
+                  )}
+                  <a href={t.projects.third.projectHref} target="_blank" rel="noopener noreferrer" className="project-link">
+                    {t.projects.third.projectLabel}
                   </a>
                 </div>
               </article>
