@@ -48,8 +48,10 @@ const content = {
         "Board game website with chess, nine men's morris and connect four, playable locally in multiplayer or against bots.",
       detailsHref: null,
       detailsLabel: "Open project page",
-      projectHref: "https://github.com/im24a-wulkana/Boared",
-      projectLabel: "View on GitHub",
+      projectHref: "https://boared-eight.vercel.app/",
+      projectLabel: "Play Now",
+      backendHref: "https://github.com/im24a-wulkana/Boared",
+      backendLabel: "View on GitHub",
     },
     side: {
       name: "Casino Tower",
@@ -217,6 +219,11 @@ export default function Home() {
                   <a href={t.projects.featured.projectHref} target="_blank" rel="noopener noreferrer" className="project-link">
                     {t.projects.featured.projectLabel}
                   </a>
+                  {t.projects.featured.backendHref && (
+                    <a href={t.projects.featured.backendHref} target="_blank" rel="noopener noreferrer" className="project-link">
+                      {t.projects.featured.backendLabel}
+                    </a>
+                  )}
                 </div>
               </article>
               <article className="surface">
