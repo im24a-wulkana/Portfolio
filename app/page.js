@@ -108,6 +108,8 @@ export default function Home() {
   const [copyFeedback, setCopyFeedback] = useState("");
   const [lolStats, setLolStats] = useState(null);
   const [lolLoading, setLolLoading] = useState(true);
+  const [musicStats, setMusicStats] = useState(null);
+  const [musicLoading, setMusicLoading] = useState(true);
   const t = content;
   const currentYear = new Date().getFullYear();
   const emailAddress = "aaronwulkan.dev@gmail.com";
@@ -127,6 +129,23 @@ export default function Home() {
     };
 
     fetchLolStats();
+  }, []);
+
+  useEffect(() => {
+    const fetchMusicStats = async () => {
+      try {
+        const res = await fetch("/api/music-stats");
+        const data = await res.json();
+        setMusicStats(data);
+      } catch (error) {
+        console.error("Error:", error);
+        setMusicStats({ error: true });
+      } finally {
+        setMusicLoading(false);
+      }
+    };
+
+    fetchMusicStats();
   }, []);
 
   async function handleCopyEmail() {
@@ -298,13 +317,41 @@ export default function Home() {
             </div>
             <div className="interests-grid">
               <article>
-                <h3>Apple Music</h3>
-                <p>Currently listening to indie and lo-fi beats. Check out my music taste.</p>
-                <div className="project-actions">
-                  <a href="https://music.apple.com/profile/aaron" target="_blank" rel="noopener noreferrer" className="project-link">
-                    View Profile
-                  </a>
-                </div>
+                <h3>Music</h3>
+                {musicLoading ? (
+                  <p>Loading stats...</p>
+                ) : musicStats?.error ? (
+                  <p>Unable to load stats</p>
+                ) : (
+                  <div className="music-stats">
+                    <div className="music-column">
+                      <span className="lol-stat-label">Top artists · 7 days</span>
+                      <ol className="music-list">
+                        {musicStats?.topArtists?.map((artist) => (
+                          <li key={artist.name}>
+                            <span className="music-name">{artist.name}</span>
+                            <span className="music-plays">{artist.plays} plays</span>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                    <div className="music-column">
+                      <span className="lol-stat-label">Top tracks · 7 days</span>
+                      <ol className="music-list">
+                        {musicStats?.topTracks?.map((track) => (
+                          <li key={`${track.artist}-${track.name}`}>
+                            {track.image && (
+                              <img src={track.image} alt="" className="music-art" />
+                            )}
+                            <span className="music-name">{track.name}</span>
+                            <span className="music-plays">{track.artist}</span>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                    <p className="lol-footnote">Live via Last.fm</p>
+                  </div>
+                )}
               </article>
               <article>
                 <h3>League of Legends</h3>

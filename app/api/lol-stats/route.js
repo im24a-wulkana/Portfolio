@@ -1,5 +1,5 @@
-// Cache for 1 hour so the page doesn't burn rate limit on every visit
-export const revalidate = 3600;
+// Refresh once a day
+export const revalidate = 86400;
 
 // Resolve champion IDs -> names via Data Dragon (public, no API key needed)
 async function getChampionNames() {
@@ -42,7 +42,7 @@ export async function GET() {
     // Riot ID -> PUUID
     const accountRes = await fetch(
       `https://${cluster}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${encodeURIComponent(gameName)}/${encodeURIComponent(tagLine)}?api_key=${apiKey}`,
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 86400 } }
     );
 
     if (!accountRes.ok) {
@@ -55,7 +55,7 @@ export async function GET() {
     // Ranked entries by PUUID
     const leagueRes = await fetch(
       `https://${platform}.api.riotgames.com/lol/league/v4/entries/by-puuid/${puuid}?api_key=${apiKey}`,
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 86400 } }
     );
 
     if (!leagueRes.ok) {
@@ -69,7 +69,7 @@ export async function GET() {
     // Top champions by mastery
     const masteryRes = await fetch(
       `https://${platform}.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/${puuid}/top?count=3&api_key=${apiKey}`,
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 86400 } }
     );
 
     let topChampions = [];

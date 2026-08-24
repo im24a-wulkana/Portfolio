@@ -371,6 +371,71 @@ section {
   color: #8fa2ba;
 }
 
+.music-stats {
+  margin-top: 1.25rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.music-column {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.music-list {
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+  counter-reset: music;
+}
+
+.music-list li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  counter-increment: music;
+}
+
+.music-list li::before {
+  content: counter(music);
+  font-family: var(--font-inter), "Inter", sans-serif;
+  font-size: 0.8rem;
+  color: #4A90E2;
+  min-width: 0.9rem;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.music-art {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 4px;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.music-name {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.music-plays {
+  font-size: 0.85rem;
+  color: #8fa2ba;
+}
+
+@media (min-width: 620px) {
+  .music-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 2.5rem;
+  }
+
+  .music-stats .lol-footnote {
+    grid-column: 1 / -1;
+  }
+}
+
 .project-actions .project-link {
   margin-top: 0;
 }
