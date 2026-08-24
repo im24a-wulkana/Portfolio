@@ -313,11 +313,35 @@ export default function Home() {
                 ) : lolStats?.error ? (
                   <p>Unable to load stats</p>
                 ) : (
-                  <div style={{ textAlign: 'center', marginTop: '1rem' }}>
-                    <p><strong>Rank:</strong> {lolStats?.rank}</p>
-                    <p><strong>Winrate:</strong> {lolStats?.winrate}</p>
-                    <p><strong>W/L:</strong> {lolStats?.wins}W / {lolStats?.losses}L</p>
-                    <p style={{ fontSize: '0.85rem', color: '#aab8cb', marginTop: '0.5rem' }}>Updates daily via Riot API</p>
+                  <div className="lol-stats">
+                    <div className="lol-stat-row">
+                      <div className="lol-stat">
+                        <span className="lol-stat-value">{lolStats?.rank}</span>
+                        <span className="lol-stat-label">
+                          {lolStats?.lp !== null ? `${lolStats?.lp} LP · Solo/Duo` : "Solo/Duo"}
+                        </span>
+                      </div>
+                      <div className="lol-stat">
+                        <span className="lol-stat-value">{lolStats?.winrate}</span>
+                        <span className="lol-stat-label">{lolStats?.wins}W / {lolStats?.losses}L</span>
+                      </div>
+                    </div>
+                    {lolStats?.topChampions?.length > 0 && (
+                      <div className="lol-champions">
+                        <span className="lol-stat-label">Most played</span>
+                        <div className="lol-champion-list">
+                          {lolStats.topChampions.map((champ) => (
+                            <span key={champ.id} className="lol-champion">
+                              {champ.iconUrl && (
+                                <img src={champ.iconUrl} alt="" className="lol-champion-icon" />
+                              )}
+                              {champ.name}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    <p className="lol-footnote">Live via Riot API</p>
                   </div>
                 )}
               </article>

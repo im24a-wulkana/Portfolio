@@ -1,3 +1,31 @@
+// Cache for 1 hour so the page doesn't burn rate limit on every visit
+export const revalidate = 3600;
+
+// Resolve champion IDs -> names via Data Dragon (public, no API key needed)
+async function getChampionNames() {
+  try {
+    const versionsRes = await fetch("https://ddragon.leagueoflegends.com/api/versions.json", {
+      next: { revalidate: 86400 },
+    });
+    const [version] = await versionsRes.json();
+
+    const champRes = await fetch(
+      `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`,
+      { next: { revalidate: 86400 } }
+    );
+    const { data } = await champRes.json();
+
+    const byId = {};
+    for (const champ of Object.values(data)) {
+      byId[Number(champ.key)] = { name: champ.name, image: champ.id, version };
+    }
+    return byId;
+  } catch (error) {
+    console.error("Data Dragon lookup failed:", error);
+    return {};
+  }
+}
+
 export async function GET() {
   try {
     const apiKey = process.env.RIOT_API_KEY;
@@ -11,68 +39,72 @@ export async function GET() {
       return Response.json({ error: "Server configuration error" }, { status: 500 });
     }
 
-    // Fetch account info to get PUUID
+    // Riot ID -> PUUID
     const accountRes = await fetch(
-      `https://${cluster}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${encodeURIComponent(gameName)}/${encodeURIComponent(tagLine)}?api_key=${apiKey}`
+      `https://${cluster}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${encodeURIComponent(gameName)}/${encodeURIComponent(tagLine)}?api_key=${apiKey}`,
+      { next: { revalidate: 3600 } }
     );
 
     if (!accountRes.ok) {
       console.error(`Account fetch failed: ${accountRes.status}`);
-      return Response.json({ error: `Account fetch failed: ${accountRes.status}` }, { status: accountRes.status });
+      return Response.json({ error: "Account not found" }, { status: accountRes.status });
     }
 
-    const accountData = await accountRes.json();
-    const puuid = accountData.puuid;
-    console.log("PUUID:", puuid);
+    const { puuid } = await accountRes.json();
 
-    // Fetch summoner by name (v4)
-    const summonerRes = await fetch(
-      `https://${platform}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${encodeURIComponent(gameName)}?api_key=${apiKey}`
+    // Ranked entries by PUUID
+    const leagueRes = await fetch(
+      `https://${platform}.api.riotgames.com/lol/league/v4/entries/by-puuid/${puuid}?api_key=${apiKey}`,
+      { next: { revalidate: 3600 } }
     );
 
-    if (!summonerRes.ok) {
-      console.error(`Summoner fetch failed: ${summonerRes.status}`);
-      return Response.json({ error: `Summoner fetch failed: ${summonerRes.status}` }, { status: summonerRes.status });
+    if (!leagueRes.ok) {
+      console.error(`League fetch failed: ${leagueRes.status}`);
+      return Response.json({ error: "Ranked data unavailable" }, { status: leagueRes.status });
     }
 
-    const summonerData = await summonerRes.json();
-    console.log("Summoner response:", JSON.stringify(summonerData));
-    const summonerId = summonerData.id;
+    const leagueData = await leagueRes.json();
+    const solo = leagueData.find((q) => q.queueType === "RANKED_SOLO_5x5");
 
-    if (!summonerId) {
-      console.error("No summoner ID in response");
-      return Response.json({ error: "Summoner ID not found" }, { status: 400 });
-    }
-
-    // Fetch ranked stats using summoner ID
-    const rankedRes = await fetch(
-      `https://${platform}.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerId}?api_key=${apiKey}`
+    // Top champions by mastery
+    const masteryRes = await fetch(
+      `https://${platform}.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/${puuid}/top?count=3&api_key=${apiKey}`,
+      { next: { revalidate: 3600 } }
     );
 
-    if (!rankedRes.ok) {
-      console.error(`Ranked fetch failed: ${rankedRes.status}`);
-      return Response.json({ error: `Ranked fetch failed: ${rankedRes.status}` }, { status: rankedRes.status });
+    let topChampions = [];
+    if (masteryRes.ok) {
+      const masteries = await masteryRes.json();
+      const championNames = await getChampionNames();
+      topChampions = masteries.map((m) => {
+        const champ = championNames[m.championId];
+        return {
+          id: m.championId,
+          name: champ?.name || `Champion ${m.championId}`,
+          iconUrl: champ
+            ? `https://ddragon.leagueoflegends.com/cdn/${champ.version}/img/champion/${champ.image}.png`
+            : null,
+          points: m.championPoints,
+        };
+      });
     }
 
-    const rankedData = await rankedRes.json();
-    console.log("Ranked data:", JSON.stringify(rankedData));
-
-    const soloQueue = Array.isArray(rankedData)
-      ? rankedData.find(q => q.queueType === "RANKED_SOLO_5x5")
-      : null;
-
-    console.log("Solo queue:", soloQueue);
+    const games = solo ? solo.wins + solo.losses : 0;
 
     return Response.json({
-      rank: soloQueue ? `${soloQueue.tier} ${soloQueue.rank}` : "Unranked",
-      winrate: soloQueue
-        ? `${((soloQueue.wins / (soloQueue.wins + soloQueue.losses)) * 100).toFixed(1)}%`
-        : "N/A",
-      wins: soloQueue?.wins || 0,
-      losses: soloQueue?.losses || 0,
+      rank: solo ? `${titleCase(solo.tier)} ${solo.rank}` : "Unranked",
+      lp: solo ? solo.leaguePoints : null,
+      winrate: games > 0 ? `${((solo.wins / games) * 100).toFixed(1)}%` : "N/A",
+      wins: solo?.wins ?? 0,
+      losses: solo?.losses ?? 0,
+      topChampions,
     });
   } catch (error) {
     console.error("Error fetching LoL stats:", error);
-    return Response.json({ error: `Failed to fetch stats: ${error.message}` }, { status: 500 });
+    return Response.json({ error: "Failed to fetch stats" }, { status: 500 });
   }
+}
+
+function titleCase(str) {
+  return str.charAt(0) + str.slice(1).toLowerCase();
 }

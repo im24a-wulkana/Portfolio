@@ -304,6 +304,73 @@ section {
   box-shadow: 0 10px 25px rgba(74, 144, 226, 0.1);
 }
 
+.lol-stats {
+  margin-top: 1.25rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.lol-stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.lol-stat {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.lol-stat-value {
+  font-family: var(--font-inter), "Inter", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.lol-stat-label {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #8fa2ba;
+}
+
+.lol-champions {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.lol-champion-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.lol-champion {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(26, 34, 51, 0.68);
+  border: 1px solid rgba(177, 199, 235, 0.28);
+  color: #dce8fa;
+  padding: 0.4rem 0.85rem 0.4rem 0.4rem;
+  border-radius: 999px;
+  font-size: 0.92rem;
+}
+
+.lol-champion-icon {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+}
+
+.lol-footnote {
+  font-size: 0.8rem;
+  color: #8fa2ba;
+}
+
 .project-actions .project-link {
   margin-top: 0;
 }
