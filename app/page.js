@@ -413,7 +413,7 @@ export default function Home() {
               </article>
               <article>
                 <h3>Clothing Store</h3>
-                <p>Second-hand designer clothing store ran with 2 friends, with a selection of old Dior Homme, Saint Laurent Paris, Celine and more.</p>
+                <p>International second-hand designer store ran with 2 friends, with a selection of old Dior Homme, Saint Laurent Paris, Celine and more.</p>
                 <div className="store-grid">
                   {storePieces.map((piece) => (
                     <a
