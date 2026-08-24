@@ -215,7 +215,9 @@ section {
 }
 
 .skill-tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   background: rgba(26, 34, 51, 0.68);
   border: 1px solid rgba(177, 199, 235, 0.35);
   color: #dce8fa;
@@ -223,12 +225,12 @@ section {
   border-radius: 8px;
   font-size: 0.95rem;
   font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
-.skill-tag:hover {
-  background: rgba(39, 52, 76, 0.8);
-  border-color: rgba(177, 199, 235, 0.5);
+.skill-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  display: inline-block;
 }
 
 .section-intro {
@@ -280,6 +282,26 @@ section {
 
 .work-list {
   text-align: center;
+}
+
+.interests-grid {
+  display: grid;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.interests-grid article {
+  background: rgba(30, 36, 48, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.interests-grid article:hover {
+  background: rgba(30, 36, 48, 0.55);
+  border-color: rgba(74, 144, 226, 0.35);
+  box-shadow: 0 10px 25px rgba(74, 144, 226, 0.1);
 }
 
 .project-actions .project-link {

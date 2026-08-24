@@ -1,7 +1,7 @@
   "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const content = {
   nav: { profile: "Profile", work: "Workflow", projects: "Projects", contact: "Contact" },
@@ -19,19 +19,38 @@ const content = {
     categories: [
       {
         name: "Languages",
-        items: ["TypeScript", "JavaScript", "Python", "Java"],
+        items: [
+          { name: "TypeScript", icon: "typescript" },
+          { name: "JavaScript", icon: "javascript" },
+          { name: "Python", icon: "python" },
+          { name: "Java", icon: "openjdk" },
+        ],
       },
       {
         name: "Frameworks",
-        items: ["Next.js", "React", "Tailwind CSS", "Flask"],
+        items: [
+          { name: "Next.js", icon: "nextdotjs" },
+          { name: "React", icon: "react" },
+          { name: "Tailwind CSS", icon: "tailwindcss" },
+          { name: "Flask", icon: "flask" },
+        ],
       },
       {
         name: "Databases",
-        items: ["MySQL", "PostgreSQL", "MongoDB"],
+        items: [
+          { name: "MySQL", icon: "mysql" },
+          { name: "PostgreSQL", icon: "postgresql" },
+          { name: "MongoDB", icon: "mongodb" },
+        ],
       },
       {
         name: "Tools",
-        items: ["Git & GitHub", "Docker", "Vercel", "Neon"],
+        items: [
+          { name: "Git & GitHub", icon: "github" },
+          { name: "Docker", icon: "docker" },
+          { name: "Vercel", icon: "vercel" },
+          { name: "Neon", icon: "neon" },
+        ],
       },
       {
         name: "Certificates",
@@ -87,9 +106,28 @@ const content = {
 export default function Home() {
   const [isCopyMenuOpen, setIsCopyMenuOpen] = useState(false);
   const [copyFeedback, setCopyFeedback] = useState("");
+  const [lolStats, setLolStats] = useState(null);
+  const [lolLoading, setLolLoading] = useState(true);
   const t = content;
   const currentYear = new Date().getFullYear();
   const emailAddress = "aaronwulkan.dev@gmail.com";
+
+  useEffect(() => {
+    const fetchLolStats = async () => {
+      try {
+        const res = await fetch("/api/lol-stats");
+        const data = await res.json();
+        setLolStats(data);
+      } catch (error) {
+        console.error("Error:", error);
+        setLolStats({ error: true });
+      } finally {
+        setLolLoading(false);
+      }
+    };
+
+    fetchLolStats();
+  }, []);
 
   async function handleCopyEmail() {
     try {
@@ -151,9 +189,23 @@ export default function Home() {
                 <div key={category.name} className="skill-category">
                   <h3>{category.name}</h3>
                   <div className="skill-tags">
-                    {category.items.map((item) => (
-                      <span key={item} className="skill-tag">{item}</span>
-                    ))}
+                    {category.items.map((item) => {
+                      const itemName = typeof item === 'string' ? item : item.name;
+                      const itemIcon = typeof item === 'string' ? null : item.icon;
+                      const isJava = itemIcon === 'openjdk';
+                      return (
+                        <span key={itemName} className="skill-tag">
+                          {itemIcon && !isJava && (
+                            <img
+                              src={`https://cdn.simpleicons.org/${itemIcon}/4A90E2`}
+                              alt={itemName}
+                              className="skill-icon"
+                            />
+                          )}
+                          {itemName}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               ))}
@@ -232,6 +284,49 @@ export default function Home() {
                 <div className="project-actions">
                   <a href="https://github.com/im24a-wulkana/Portfolio" target="_blank" rel="noopener noreferrer" className="project-link">
                     View on GitHub
+                  </a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="interests" aria-labelledby="interests-title">
+          <div className="container section-grid">
+            <div className="section-header">
+              <h2 id="interests-title">Interests</h2>
+            </div>
+            <div className="interests-grid">
+              <article>
+                <h3>Apple Music</h3>
+                <p>Currently listening to indie and lo-fi beats. Check out my music taste.</p>
+                <div className="project-actions">
+                  <a href="https://music.apple.com/profile/aaron" target="_blank" rel="noopener noreferrer" className="project-link">
+                    View Profile
+                  </a>
+                </div>
+              </article>
+              <article>
+                <h3>League of Legends</h3>
+                {lolLoading ? (
+                  <p>Loading stats...</p>
+                ) : lolStats?.error ? (
+                  <p>Unable to load stats</p>
+                ) : (
+                  <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+                    <p><strong>Rank:</strong> {lolStats?.rank}</p>
+                    <p><strong>Winrate:</strong> {lolStats?.winrate}</p>
+                    <p><strong>W/L:</strong> {lolStats?.wins}W / {lolStats?.losses}L</p>
+                    <p style={{ fontSize: '0.85rem', color: '#aab8cb', marginTop: '0.5rem' }}>Updates daily via Riot API</p>
+                  </div>
+                )}
+              </article>
+              <article>
+                <h3>Clothing Store</h3>
+                <p>Exclusive streetwear designs and limited drops. New collection every month.</p>
+                <div className="project-actions">
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="project-link">
+                    Visit Store
                   </a>
                 </div>
               </article>
