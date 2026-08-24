@@ -1,13 +1,19 @@
-const RIOT_API_KEY = "RGAPI-1655e5e3-aff9-4cc6-ac00-dd6c2c9f6dc7";
-
-export async function GET(request) {
+export async function GET() {
   try {
-    const gameName = "BDK ddfruit";
-    const tagLine = "1312";
+    const apiKey = process.env.RIOT_API_KEY;
+    const gameName = process.env.RIOT_GAME_NAME;
+    const tagLine = process.env.RIOT_TAG_LINE;
+    const platform = process.env.RIOT_PLATFORM;
+    const cluster = process.env.RIOT_CLUSTER;
 
-    // Fetch account info
+    if (!apiKey || !gameName || !tagLine || !platform || !cluster) {
+      console.error("Missing Riot API environment variables");
+      return Response.json({ error: "Server configuration error" }, { status: 500 });
+    }
+
+    // Fetch account info to get PUUID
     const accountRes = await fetch(
-      `https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${encodeURIComponent(gameName)}/${encodeURIComponent(tagLine)}?api_key=${RIOT_API_KEY}`
+      `https://${cluster}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${encodeURIComponent(gameName)}/${encodeURIComponent(tagLine)}?api_key=${apiKey}`
     );
 
     if (!accountRes.ok) {
@@ -16,11 +22,12 @@ export async function GET(request) {
     }
 
     const accountData = await accountRes.json();
-    console.log("Account found:", accountData.puuid);
+    const puuid = accountData.puuid;
+    console.log("PUUID:", puuid);
 
-    // Fetch summoner info
+    // Fetch summoner by name (v4)
     const summonerRes = await fetch(
-      `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${accountData.puuid}?api_key=${RIOT_API_KEY}`
+      `https://${platform}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${encodeURIComponent(gameName)}?api_key=${apiKey}`
     );
 
     if (!summonerRes.ok) {
@@ -29,19 +36,32 @@ export async function GET(request) {
     }
 
     const summonerData = await summonerRes.json();
-    console.log("Summoner found:", summonerData.id);
+    console.log("Summoner response:", JSON.stringify(summonerData));
+    const summonerId = summonerData.id;
 
-    // Fetch ranked stats
+    if (!summonerId) {
+      console.error("No summoner ID in response");
+      return Response.json({ error: "Summoner ID not found" }, { status: 400 });
+    }
+
+    // Fetch ranked stats using summoner ID
     const rankedRes = await fetch(
-      `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerData.id}?api_key=${RIOT_API_KEY}`
+      `https://${platform}.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerId}?api_key=${apiKey}`
     );
 
+    if (!rankedRes.ok) {
+      console.error(`Ranked fetch failed: ${rankedRes.status}`);
+      return Response.json({ error: `Ranked fetch failed: ${rankedRes.status}` }, { status: rankedRes.status });
+    }
+
     const rankedData = await rankedRes.json();
+    console.log("Ranked data:", JSON.stringify(rankedData));
+
     const soloQueue = Array.isArray(rankedData)
       ? rankedData.find(q => q.queueType === "RANKED_SOLO_5x5")
       : null;
 
-    console.log("Solo queue data:", soloQueue);
+    console.log("Solo queue:", soloQueue);
 
     return Response.json({
       rank: soloQueue ? `${soloQueue.tier} ${soloQueue.rank}` : "Unranked",
