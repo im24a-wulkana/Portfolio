@@ -35,7 +35,7 @@ const content = {
       },
       {
         name: "Certificates",
-        items: ["Abacus Anwender 2026"],
+        items: ["Abacus Anwender 2026", "Hackathon 2026"],
       },
     ],
   },
@@ -267,6 +267,9 @@ export default function Home() {
                 </div>
                 <a href="https://github.com/im24a-wulkana" target="_blank" rel="noopener noreferrer" className="contact-link-button">
                   GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/aaron-wulkan/" target="_blank" rel="noopener noreferrer" className="contact-link-button">
+                  LinkedIn
                 </a>
               </div>
             </div>
