@@ -1,5 +1,5 @@
-// Refresh once a day
-export const revalidate = 86400;
+// Refresh hourly
+export const revalidate = 3600;
 
 const API_ROOT = "https://ws.audioscrobbler.com/2.0/";
 
@@ -12,7 +12,7 @@ async function lastfm(method, params) {
     url.searchParams.set(key, value);
   }
 
-  const res = await fetch(url, { next: { revalidate: 86400 } });
+  const res = await fetch(url, { next: { revalidate: 3600 } });
   if (!res.ok) {
     throw new Error(`${method} failed: ${res.status}`);
   }
