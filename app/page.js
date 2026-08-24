@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const content = {
-  nav: { profile: "Profile", work: "Workflow", projects: "Projects", contact: "Contact" },
+  nav: { profile: "Profile", work: "Workflow", projects: "Projects", interests: "Interests", contact: "Contact" },
   hero: {
     title: "Aaron Wulkan",
     subtitle: "Full Stack Developer | Creative Problem Solver",
@@ -103,6 +103,24 @@ const content = {
   footer: "Aaron Wulkan",
 };
 
+const storePieces = [
+  {
+    file: "glitter-jeans.jpg",
+    label: 'Dior Homme AW05 "In The Morning" Glitter Jeans',
+    href: "https://www.instagram.com/p/DZ0fX5LiCCK/",
+  },
+  {
+    file: "leopard-jacket.jpg",
+    label: 'Saint Laurent SS16 "Surf Sound" Leopard Contrast Panel Leather Jacket',
+    href: "https://www.instagram.com/p/DbL1xFVCFkl/",
+  },
+  {
+    file: "suede-boots.jpg",
+    label: 'Dior AW07 "Navigate" Dark Brown Suede Boots',
+    href: "https://www.instagram.com/p/DaN84OQCJih/",
+  },
+];
+
 export default function Home() {
   const [isCopyMenuOpen, setIsCopyMenuOpen] = useState(false);
   const [copyFeedback, setCopyFeedback] = useState("");
@@ -170,6 +188,7 @@ export default function Home() {
               <li><a href="#profile">{t.nav.profile}</a></li>
               <li><a href="#workflow">{t.nav.work}</a></li>
               <li><a href="#projects">{t.nav.projects}</a></li>
+              <li><a href="#interests">{t.nav.interests}</a></li>
               <li><a href="#contact">{t.nav.contact}</a></li>
             </ul>
           </div>
@@ -394,12 +413,27 @@ export default function Home() {
               </article>
               <article>
                 <h3>Clothing Store</h3>
-                <p>Exclusive streetwear designs and limited drops. New collection every month.</p>
+                <p>Second-hand designer clothing store ran with 2 friends, with a selection of old Dior Homme, Saint Laurent Paris, Celine and more.</p>
+                <div className="store-grid">
+                  {storePieces.map((piece) => (
+                    <a
+                      key={piece.file}
+                      href={piece.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="store-piece"
+                    >
+                      <img src={`/store/${piece.file}`} alt={piece.label} />
+                      <span className="store-caption">{piece.label}</span>
+                    </a>
+                  ))}
+                </div>
                 <div className="project-actions">
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="project-link">
+                  <a href="https://www.instagram.com/untilfourever" target="_blank" rel="noopener noreferrer" className="project-link">
                     Visit Store
                   </a>
                 </div>
+                <p className="lol-footnote store-footnote">Ran through Instagram</p>
               </article>
             </div>
           </div>

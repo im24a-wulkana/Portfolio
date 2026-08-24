@@ -407,6 +407,61 @@ section {
   flex-shrink: 0;
 }
 
+.store-footnote {
+  margin-top: 1rem;
+}
+
+.store-grid {
+  margin-top: 1.35rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9rem;
+}
+
+.store-piece {
+  display: grid;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+/* Fixed 3:4 box + cover keeps all three identical whatever the source size,
+   and the crop trims any stray edge artefacts. */
+.store-piece img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.store-piece:hover img {
+  border-color: rgba(74, 144, 226, 0.4);
+  transform: translateY(-3px);
+}
+
+.store-caption {
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: #8fa2ba;
+  transition: color 0.3s ease;
+}
+
+.store-piece:hover .store-caption {
+  color: #c5d0df;
+}
+
+@media (max-width: 520px) {
+  .store-grid {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+
+  .store-caption {
+    font-size: 0.8rem;
+  }
+}
+
 .music-art {
   width: 2rem;
   height: 2rem;
