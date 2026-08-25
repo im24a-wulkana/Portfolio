@@ -82,6 +82,17 @@ const content = {
       backendHref: "https://github.com/im24a-wulkana/casino-tower",
       backendLabel: "View on GitHub",
     },
+    fourth: {
+      name: "OneRail",
+      summary:
+        "Second-hand search engine that queries 4 selling platforms at once and sorts every listing into a single, price-ordered feed, with more platforms on the way.",
+      detailsHref: null,
+      detailsLabel: "Open project page",
+      projectHref: "https://onerail-six.vercel.app",
+      projectLabel: "Live Demo",
+      backendHref: "https://github.com/im24a-wulkana/secondhandsearchengine",
+      backendLabel: "View on GitHub",
+    },
     third: {
       name: "Trackworks",
       summary: "Online multiplayer racing game where you build your own track with obstacles first and then race against friends.",
@@ -276,6 +287,18 @@ export default function Home() {
                       {t.projects.side.backendLabel}
                     </a>
                   )}
+                </div>
+              </article>
+              <article className="surface">
+                <h3>{t.projects.fourth.name}</h3>
+                <p>{t.projects.fourth.summary}</p>
+                <div className="project-actions">
+                  <a href={t.projects.fourth.projectHref} target="_blank" rel="noopener noreferrer" className="project-link">
+                    {t.projects.fourth.projectLabel}
+                  </a>
+                  <a href={t.projects.fourth.backendHref} target="_blank" rel="noopener noreferrer" className="project-link">
+                    {t.projects.fourth.backendLabel}
+                  </a>
                 </div>
               </article>
               <article className="surface">
