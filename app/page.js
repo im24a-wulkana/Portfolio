@@ -85,7 +85,7 @@ const content = {
     fourth: {
       name: "OneRail",
       summary:
-        "Second-hand search engine that queries 4 selling platforms at once and sorts every listing into a single, price-ordered feed, with more platforms on the way.",
+        "Second-hand search engine that queries 5 selling platforms at once and sorts every listing into a single, price-ordered feed, with more platforms on the way.",
       detailsHref: null,
       detailsLabel: "Open project page",
       projectHref: "https://onerail-six.vercel.app",
