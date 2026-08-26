@@ -28,13 +28,25 @@ async function lastfm(method, params) {
 // Returns null when Last.fm has no artwork or serves its grey placeholder.
 const PLACEHOLDER = "2a96cbd8b46e442fc41c2b86b821562f";
 
+function extractArt(data) {
+  const images = data.track?.album?.image ?? data.track?.image ?? [];
+  for (let i = images.length - 1; i >= 0; i--) {
+    const url = images[i]["#text"];
+    if (url && !url.includes(PLACEHOLDER)) return url;
+  }
+  return null;
+}
+
 async function getAlbumArt(artist, track) {
   try {
-    const data = await lastfm("track.getInfo", { artist, track });
-    const images = data.track?.album?.image ?? data.track?.image ?? [];
-    for (let i = images.length - 1; i >= 0; i--) {
-      const url = images[i]["#text"];
-      if (url && !url.includes(PLACEHOLDER)) return url;
+    const art = extractArt(await lastfm("track.getInfo", { artist, track }));
+    if (art) return art;
+
+    // Last.fm indexes "Song (feat. X)" separately from "Song", and the featured
+    // variant often has no album linked. Retry with the suffix stripped.
+    const base = track.replace(/\s*[([]\s*(feat|ft|with)[.\s][^)\]]*[)\]]\s*$/i, "").trim();
+    if (base && base !== track) {
+      return extractArt(await lastfm("track.getInfo", { artist, track: base }));
     }
   } catch (error) {
     console.error(`Album art lookup failed for ${artist} - ${track}:`, error.message);
