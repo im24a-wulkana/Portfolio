@@ -72,16 +72,6 @@ const content = {
       backendHref: "https://github.com/im24a-wulkana/Boared",
       backendLabel: "View on GitHub",
     },
-    side: {
-      name: "Casino Tower",
-      summary: "Gambling website where you can climb different floors with online multiplayer and 19 different games.",
-      detailsHref: null,
-      detailsLabel: "Open project page",
-      projectHref: "https://casino-tower.vercel.app/",
-      projectLabel: "Play Now",
-      backendHref: "https://github.com/im24a-wulkana/casino-tower",
-      backendLabel: "View on GitHub",
-    },
     fourth: {
       name: "OneRail",
       summary:
@@ -91,6 +81,15 @@ const content = {
       projectHref: "https://onerail-six.vercel.app",
       projectLabel: "Live Demo",
       backendHref: "https://github.com/im24a-wulkana/secondhandsearchengine",
+      backendLabel: "View on GitHub",
+    },
+    vitrine: {
+      name: "Vitrine",
+      summary:
+        "Wardrobe and resale profit tracker that shows what each piece cost, what it sold for and what platform fees took, as an installable mobile-first web app.",
+      projectHref: "https://vitrine-livid-rho.vercel.app",
+      projectLabel: "Live Demo",
+      backendHref: "https://github.com/im24a-wulkana/Vitrine",
       backendLabel: "View on GitHub",
     },
     third: {
@@ -271,22 +270,15 @@ export default function Home() {
 
             <div className="work-list">
               <article className="surface">
-                <h3>{t.projects.side.name}</h3>
-                <p>{t.projects.side.summary}</p>
+                <h3>{t.projects.vitrine.name}</h3>
+                <p>{t.projects.vitrine.summary}</p>
                 <div className="project-actions">
-                  {t.projects.side.detailsHref && (
-                    <Link href={t.projects.side.detailsHref} className="project-link">
-                      {t.projects.side.detailsLabel}
-                    </Link>
-                  )}
-                  <a href={t.projects.side.projectHref} target="_blank" rel="noopener noreferrer" className="project-link">
-                    {t.projects.side.projectLabel}
+                  <a href={t.projects.vitrine.projectHref} target="_blank" rel="noopener noreferrer" className="project-link">
+                    {t.projects.vitrine.projectLabel}
                   </a>
-                  {t.projects.side.backendHref && (
-                    <a href={t.projects.side.backendHref} target="_blank" rel="noopener noreferrer" className="project-link">
-                      {t.projects.side.backendLabel}
-                    </a>
-                  )}
+                  <a href={t.projects.vitrine.backendHref} target="_blank" rel="noopener noreferrer" className="project-link">
+                    {t.projects.vitrine.backendLabel}
+                  </a>
                 </div>
               </article>
               <article className="surface">
